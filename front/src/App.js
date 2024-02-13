@@ -8,7 +8,7 @@ import {
   Mensajes,
 } from "./views";
 import NavBar from "./views/NavBar/NavBar";
-
+//Initial app
 function App() {
   const location = useLocation();
 
