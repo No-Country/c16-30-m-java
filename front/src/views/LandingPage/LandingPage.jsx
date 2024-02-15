@@ -29,9 +29,10 @@ const LandingPage = () => {
                 <button className="bg-slate-300 w-full h-9 rounded-sm my-4">Iniciar sesión</button>
             </form>
             <label className="text-center">¿Todavía No tienes cuenta? <Link className="font-bold" to="/Registro">Regístrate aquí</Link></label>
-            
             </div>
   );
+
+  //este es un comentario de prueba
 };
 
 export default LandingPage;
