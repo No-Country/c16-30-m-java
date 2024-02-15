@@ -2,6 +2,7 @@ import "./App.css";
 import { Routes, Route, useLocation } from "react-router-dom";
 import {
   LandingPage,
+  RegistrationForm,
   Home,
   MisPublicaciones,
   MiCuenta,
@@ -17,6 +18,7 @@ function App() {
       {location.pathname !== "/" && <NavBar />}
       <Routes>
         <Route exact path="/" element={<LandingPage />} />
+        <Route path="/registrationForm" element={<RegistrationForm />} />
         <Route path="/home" element={<Home />} />
         <Route path="/micuenta" element={<MiCuenta />} />
         <Route path="/mispublicaciones" element={<MisPublicaciones />} />
