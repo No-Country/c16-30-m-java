@@ -1,11 +1,11 @@
 import React from "react";
 import Card from "../Card/Card";
 
-const CardsContainer = ({ products }) => {
+const CardsContainer = ({ currentAppProducts }) => {
   return (
     <div className="container">
-      {products.length > 0 ? (
-        products.map((p) => {
+      {currentAppProducts.length > 0 ? (
+        currentAppProducts.map((p) => {
           return (
             <div className="card" key={p.userId}>
               <Card
