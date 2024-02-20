@@ -3,6 +3,7 @@ import CardsContainer from "../../components/CardContainer/CardContainer";
 import products from "../../products.json";
 import Pagination from "../../components/Pagination/Pagination";
 import { useState, useEffect } from "react";
+import PublishSign from "../../components/PublishSign/PublishSign";
 
 const Home = () => {
   const [appProducts, setAppProducts] = useState(products);
@@ -24,6 +25,7 @@ const Home = () => {
   return (
     <div>
       <h1>Home</h1>
+      <PublishSign />
       <CardsContainer currentAppProducts={appProducts} />
       <Pagination loadMore={loadMore} />
     </div>
