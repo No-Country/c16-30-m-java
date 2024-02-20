@@ -8,6 +8,7 @@ import {
   Mensajes,
   About,
   Legalities,
+  Publish,
 } from "./views";
 import NavBar from "./views/NavBar/NavBar";
 import { Footer } from "./layout";
@@ -27,6 +28,7 @@ function App() {
         <Route path="/micuenta" element={<MiCuenta />} />
         <Route path="/mispublicaciones" element={<MisPublicaciones />} />
         <Route path="/mensajes" element={<Mensajes />} />
+        <Route path="/publish" element={<Publish />} />
       </Routes>
       {location.pathname !== "/" && <Footer />}
     </div>
