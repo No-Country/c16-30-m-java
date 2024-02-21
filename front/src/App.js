@@ -1,7 +1,5 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, /*useLocation*/ } from "react-router-dom";
 import {
-  LandingPage,
-  RegistrationForm,
   Home,
   MisPublicaciones,
   MiCuenta,
@@ -14,14 +12,13 @@ import NavBar from "./views/NavBar/NavBar";
 import { Footer } from "./layout";
 
 function App() {
-  const location = useLocation();
+  //const location = useLocation();
 
   return (
     <div>
-      {location.pathname !== "/" && <NavBar />}
+      {/*location.pathname !== "/" && */<NavBar />}
       <Routes>
-        <Route exact path="/" element={<LandingPage />} />
-        <Route path="/registrationForm" element={<RegistrationForm />} />
+        <Route exact path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/legalities" element={<Legalities />} />
@@ -30,7 +27,7 @@ function App() {
         <Route path="/mensajes" element={<Mensajes />} />
         <Route path="/publish" element={<Publish />} />
       </Routes>
-      {location.pathname !== "/" && <Footer />}
+      {/*location.pathname !== "/" && */<Footer />}
     </div>
   );
 }
