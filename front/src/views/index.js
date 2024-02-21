@@ -1,6 +1,4 @@
 // eslint-disable-next-line
-import LandingPage from "./LandingPage/LandingPage.jsx";
-import RegistrationForm from "./RegistrationForm/RegistrationForm.jsx";
 import Home from "./Home/Home.jsx";
 import MiCuenta from "./MiCuenta/MiCuenta.jsx";
 import MisPublicaciones from "./MisPublicaciones/MisPublicaciones.jsx";
@@ -12,8 +10,6 @@ import Legalities from "./Legalities/Legalities.jsx";
 import Publish from "./Publish/Publish.jsx";
 // eslint-disable-next-line
 export {
-  LandingPage,
-  RegistrationForm,
   Home,
   About,
   Legalities,
