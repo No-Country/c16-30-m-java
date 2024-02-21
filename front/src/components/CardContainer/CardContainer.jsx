@@ -7,7 +7,7 @@ const CardsContainer = ({ currentAppProducts }) => {
       {currentAppProducts.length > 0 ? (
         currentAppProducts.map((p) => {
           return (
-            <div className="card" key={p.userId}>
+            <div className="card bg-gray-400 w-1/3 m-2 p-2" key={p.userId}>
               <Card
                 name={p.name}
                 description={p.description}

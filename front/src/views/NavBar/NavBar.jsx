@@ -8,13 +8,13 @@ import Modal from "../../components/Modal/Modal";
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <>
-    <div>
+    <div className="flex justify-center justify-around">
+
       <Link to={"/home"}>
         <button>Home</button>
-        <Link to={"/micuenta"}>
-          <button>Mi Cuenta</button>
-        </Link>
+      </Link>
+      <Link to={"/micuenta"}>
+        <button>Mi Cuenta</button>
       </Link>
       <Link to={"/mispublicaciones"}>
         <button>Mis Publicaciones</button>

@@ -23,8 +23,7 @@ const Home = () => {
   };
 
   return (
-    <div>
-      <h1>Home</h1>
+    <div className="flex-direction: row justify-content: space-evenly;">
       <PublishSign />
       <CardsContainer currentAppProducts={appProducts} />
       <Pagination loadMore={loadMore} />
