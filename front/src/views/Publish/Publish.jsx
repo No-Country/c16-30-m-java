@@ -3,8 +3,7 @@ import { useState } from "react";
 import validator from "./validation";
 
 const Publish = () => {
-
-  const dietList = []
+  const dietList = [];
   // Estados locales
   const [form, setForm] = useState({
     name: "",
@@ -78,81 +77,123 @@ const Publish = () => {
     setErrors(validationErrors);
     console.log(validationErrors);
     if (Object.keys(validationErrors).length === 0) {
-      return
+      return;
     }
   };
   return (
-    <div>
-      <form onSubmit={submitHandler} noValidate>
-        <h1>Crear Nueva Receta</h1>
-        <label>Nombre:</label>
-        <input
-          type="text"
-          name="name"
-          value={form.name}
-          onChange={changeHandler}
-          required
-        />
-        {errors.name && <p >{errors.name}</p>}
-        <br />
-        <label for="resumen">Resumen del plato:</label>
-        <textarea
-          name="summary"
-          value={form.summary}
-          onChange={changeHandler}
-          required
-        ></textarea>
-        {errors.summary && <p>{errors.summary}</p>}
-        <br />
-        <label for="healthScore">
-          Nivel de comida saludable (del 1 al 100):
-        </label>
-        <input
-          type="number"
-          name="healthScore"
-          value={form.healthScore}
-          onChange={changeHandler}
-          required
-        />
-        {errors.healthScore && <p>{errors.healthScore}</p>}
-        <br />
-        <label for="pasos">Paso a paso:</label>
-        <textarea
-          name="instructions"
-          value={form.instructions}
-          onChange={changeHandler}
-          required
-        ></textarea>
-        {errors.instructions && <p>{errors.instructions}</p>}
-        <br />
-        <label for="imagen">Imagen:</label>
-        <input
-          type="text"
-          name="image"
-          value={form.image}
-          autoComplete="off"
-          onChange={changeHandler}
-        ></input>
-        {errors.image && <p>{errors.image}</p>}
-        <br />
-        <label>Tipos de dieta:</label>
-        {errors.diets && <p>{errors.diets}</p>}
-        <br />
-        {dietList.map((diet, index) => {
-          return (
-            <div key={index}>
-              <label htmlFor={diet.id}>{diet.name}</label>
-              <input
-                type="checkbox"
-                id={diet.id}
-                value={form.diets}
-                onChange={dietsHandler}
-              />
-            </div>
-          );
-        })}
-        <button type="submit">Crear Receta</button>
-      </form>
+    <div className="py-32 px-10 min-h-screen bg-gray-50">
+      <div className="bg-white shadow-xl rounded-lg p-10 md:w-3/4 lg:w-1/2 mx-auto">
+        <form onSubmit={submitHandler} noValidate>
+          <h1 className="text-2xl font-semibold mb-5 text-center">
+            Crear Nueva Receta
+          </h1>
+          <div className="flex flex-col mb-5">
+            <label className="mb-2 font-bold text-gray-700">Nombre:</label>
+            <input
+              className="py-2 px-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+              type="text"
+              name="name"
+              value={form.name}
+              onChange={changeHandler}
+              required
+            />
+            {errors.name && (
+              <p className="text-red-500 text-xs mt-1">{errors.name}</p>
+            )}
+          </div>
+
+          <div className="flex flex-col mb-5">
+            <label className="mb-2 font-bold text-gray-700">
+              Resumen del plato:
+            </label>
+            <textarea
+              name="summary"
+              className="py-2 px-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+              value={form.summary}
+              onChange={changeHandler}
+              required
+            ></textarea>
+            {errors.summary && (
+              <p className="text-red-500 text-xs mt-1">{errors.summary}</p>
+            )}
+          </div>
+
+          <div className="flex flex-col mb-5">
+            <label className="mb-2 font-bold text-gray-700">
+              Nivel de comida saludable (del 1 al 100):
+            </label>
+            <input
+              className="py-2 px-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+              type="number"
+              name="healthScore"
+              value={form.healthScore}
+              onChange={changeHandler}
+              required
+            />
+            {errors.healthScore && (
+              <p className="text-red-500 text-xs mt-1">{errors.healthScore}</p>
+            )}
+          </div>
+
+          <div className="flex flex-col mb-5">
+            <label className="mb-2 font-bold text-gray-700">Paso a paso:</label>
+            <textarea
+              name="instructions"
+              className="py-2 px-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+              value={form.instructions}
+              onChange={changeHandler}
+              required
+            ></textarea>
+            {errors.instructions && (
+              <p className="text-red-500 text-xs mt-1">{errors.instructions}</p>
+            )}
+          </div>
+
+          <div className="flex flex-col mb-5">
+            <label className="mb-2 font-bold text-gray-700">Imagen:</label>
+            <input
+              type="text"
+              name="image"
+              className="py-2 px-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+              value={form.image}
+              autoComplete="off"
+              onChange={changeHandler}
+            ></input>
+            {errors.image && (
+              <p className="text-red-500 text-xs mt-1">{errors.image}</p>
+            )}
+          </div>
+
+          <div className="flex flex-col mb-5">
+            <label className="mb-2 font-bold text-gray-700">
+              Tipos de dieta:
+            </label>
+            {errors.diets && (
+              <p className="text-red-500 text-xs mt-1">{errors.diets}</p>
+            )}
+            {dietList.map((diet, index) => (
+              <div key={index} className="flex items-center mb-2">
+                <input
+                  type="checkbox"
+                  id={diet.id}
+                  className="mr-2"
+                  value={form.diets}
+                  onChange={dietsHandler}
+                />
+                <label htmlFor={diet.id} className="text-gray-700">
+                  {diet.name}
+                </label>
+              </div>
+            ))}
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition duration-200"
+          >
+            Crear Receta
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
