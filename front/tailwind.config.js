@@ -8,6 +8,9 @@ module.exports = {
       },
       colors: {
         main: "var(--text-main-color)",
+        "genoa" : "#128260",
+        "codgray" : "#1E1E1E",
+        "red-orange" : "#FF4538",
       },
       backgroundColor: {
         footer: "var(--footer-background)",
