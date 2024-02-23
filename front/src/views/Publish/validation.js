@@ -1,38 +1,44 @@
 const validator = (data) => {
   let errors = {};
 
-  if (!data.name) {
-    errors.name = "*Ingresar un nombre";
+  if (!data.name.trim()) {
+    errors.name = "El nombre es requerido";
+  } else if (data.name.length < 3) {
+    errors.name = "El nombre debe tener al menos 3 caracteres";
   }
 
-  if (!data.summary) {
-    errors.summary = "*Ingresar un resumen del plato";
-  } else if (data.summary.length < 75 || data.summary.length > 500) {
-    errors.summary = "*El resumen debe tener entre 75 y 500 caracteres";
+  if (!data.description.trim()) {
+    errors.description = "La descripción es requerida";
+  } else if (data.description.length < 10) {
+    errors.description = "La descripción debe tener al menos 10 caracteres";
   }
 
-  if (data.healthScore <= 0 || data.healthScore > 100) {
-    errors.healthScore =
-      "*El puntaje saludable de la receta debe ser entre 1 y 100";
+  if (!data.type) {
+    errors.type = "El tipo es requerido";
   }
 
-  if (!data.instructions) {
-    errors.instructions =
-      "*Ingresar un paso a paso acerca de la preparación del plato";
-  } else if (data.instructions.length < 75 || data.instructions.length > 500) {
-    errors.instructions =
-      "*El paso a paso debe tener entre 75 y 500 caracteres";
+  if (!data.category.trim()) {
+    errors.category = "La categoría es requerida";
   }
 
-  if (!data.image) {
-    errors.image = "*Ingresar un link a una imagen apropiada para la receta";
-  } else if (!/\.(jpeg|jpg|png|gif|bmp|webp)$/i.test(data.image)) {
-    errors.image =
-      "*El enlace debe ser una URL de imagen válida (JPEG, JPG, PNG, GIF, BMP o WebP)";
+  if (!data.product.trim()) {
+    errors.product = "El producto es requerido";
   }
 
-  if (!data.diets.length) {
-    errors.diets = "*Ingresar al menos 1 receta";
+  if (data.quantity <= 0) {
+    errors.quantity = "La cantidad debe ser mayor que cero";
+  }
+
+  if (!data.weight.trim()) {
+    errors.weight = "El peso es requerido";
+  } else if (!/^\d+(\.\d{1,2})?$/.test(data.weight)) {
+    errors.weight = "El peso debe ser un número válido";
+  }
+
+  if (!data.timeLimit.trim()) {
+    errors.timeLimit = "El límite de tiempo es requerido";
+  } else if (!/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/.test(data.timeLimit)) {
+    errors.timeLimit = "El límite de tiempo debe tener el formato HH:MM";
   }
 
   return errors;
