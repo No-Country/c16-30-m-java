@@ -5,6 +5,7 @@ import Pagination from "../../components/Pagination/Pagination";
 import { useState, useEffect } from "react";
 import PublishSign from "../../components/PublishSign/PublishSign";
 import ToolBar from "../../components/ToolBar/ToolBar";
+import { Hero } from "../../layout";
 
 const Home = () => {
   const [appProducts, setAppProducts] = useState(products);
@@ -25,6 +26,7 @@ const Home = () => {
 
   return (
     <div>
+      <Hero />
       <div className="flex items-center mb-4">
         <h1 className="text-3xl font-bold mr-4">Ultimas Publicaciones!</h1>
         <PublishSign />
