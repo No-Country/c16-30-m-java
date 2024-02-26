@@ -59,7 +59,7 @@ export default function Registro({ useLogin, setUseLogin }) {
             </div>
 
             {/* email */}
-            <div className="relative">
+            <div className="relative my-7">
               <label
                 htmlFor="email"
                 className="absolute bg-white top-[-15px] left-[12px] px-2 py-0"
@@ -82,13 +82,13 @@ export default function Registro({ useLogin, setUseLogin }) {
                   },
                 })}
               />
-            </div>
-
             {errors.email && (
               <span className="block text-red-600 text-xs">
                 {errors.email.message}
               </span>
             )}
+            </div>
+
 
             {/* password */}
             <div className="relative my-7">
@@ -109,13 +109,13 @@ export default function Registro({ useLogin, setUseLogin }) {
                 },
               })}
             />
-            </div>
-
             {errors.password && (
               <span className="block text-red-600 text-xs">
                 {errors.password.message}
               </span>
             )}
+            </div>
+
 
             {/* confirm password */}
             <div className="relative my-7">
@@ -136,13 +136,13 @@ export default function Registro({ useLogin, setUseLogin }) {
                   value === watch("password") || "Las contraseñas no coinciden",
               })}
             />
-            </div>
-
             {errors.confirmPassword && (
               <span className="block text-red-600 text-xs">
                 {errors.confirmPassword.message}
               </span>
             )}
+            </div>
+
 
             {/* name */}
             <div className="relative my-7">
@@ -167,12 +167,12 @@ export default function Registro({ useLogin, setUseLogin }) {
                 },
               })}
             />
-            </div>
             {errors.name && (
               <span className="block text-red-600 text-xs">
                 {errors.name.message}
               </span>
             )}
+            </div>
 
             {/* country */}
             <div className="relative my-7">
@@ -264,7 +264,7 @@ export default function Registro({ useLogin, setUseLogin }) {
             )}
 
             {/* terms and conditions */}
-            <div className="flex my-2">
+            <div className="my-2">
               <input
                 className="w-4"
                 id="terms"
@@ -279,13 +279,13 @@ export default function Registro({ useLogin, setUseLogin }) {
               <label className="p-1" htmlFor="terms">
                 Acepto términos y condiciones
               </label>
-            </div>
-
             {errors.terms && (
               <span className="block text-red-600 text-xs">
                 {errors.terms.message}
               </span>
             )}
+            </div>
+
 
             <button className="bg-genoa text-white font-bold w-[349px] h-10 rounded-3xl my-4">
               Registrarse

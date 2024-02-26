@@ -9,7 +9,7 @@ const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <div className="flex justify-center justify-around">
+      <div className="flex justify-around">
         <Link to={"/home"}>
           <button>Home</button>
         </Link>
