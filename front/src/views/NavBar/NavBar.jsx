@@ -8,6 +8,7 @@ import Modal from "../../components/Modal/Modal";
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
+    <>
     <div className="flex justify-center justify-around">
 
       <Link to={"/home"}>
