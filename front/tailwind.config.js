@@ -7,13 +7,14 @@ module.exports = {
         normal: "var(--text-normal)",
       },
       colors: {
-        main: "var(--text-main-color)",
+        black: "#000",
         "genoa" : "#128260",
         "codgray" : "#1E1E1E",
         "red-orange" : "#FF4538",
       },
       backgroundColor: {
         footer: "var(--footer-background)",
+        primary: "#128260",
       },
       fontFamily: {
         main: ["var(--main-font)", "sans-serif"],

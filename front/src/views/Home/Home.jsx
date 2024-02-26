@@ -4,6 +4,8 @@ import products from "../../products.json";
 import Pagination from "../../components/Pagination/Pagination";
 import { useState, useEffect } from "react";
 import PublishSign from "../../components/PublishSign/PublishSign";
+import ToolBar from "../../components/ToolBar/ToolBar";
+import { Hero } from "../../layout";
 
 const Home = () => {
   const [appProducts, setAppProducts] = useState(products);
@@ -23,10 +25,26 @@ const Home = () => {
   };
 
   return (
-    <div className="flex-direction: row justify-content: space-evenly;">
-      <PublishSign />
-      <CardsContainer currentAppProducts={appProducts} />
-      <Pagination loadMore={loadMore} />
+    <div>
+      <Hero />
+      <div className="flex items-center mb-4">
+        <h1 className="text-3xl font-bold mr-4">Ultimas Publicaciones!</h1>
+        <PublishSign />
+      </div>
+      <div className="flex justify-between">
+        <ToolBar className="mr-auto" />{" "}
+        {/* Estilo para que esté a la izquierda */}
+        <div className="ml-auto">
+          {" "}
+          {/* Contenedor para alinear CardsContainer a la derecha */}
+          <CardsContainer currentAppProducts={appProducts} />
+        </div>
+      </div>
+      <div className="flex justify-center mt-4">
+        {" "}
+        {/* Centrar el componente de paginación */}
+        <Pagination loadMore={loadMore} />
+      </div>
     </div>
   );
 };

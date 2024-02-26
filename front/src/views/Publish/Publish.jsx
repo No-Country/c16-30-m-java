@@ -5,17 +5,17 @@ const PublicationForm = () => {
   const [form, setForm] = useState({
     name: "",
     description: "",
-    type: "", // 'food' o 'notFood'
+    type: "",
     category: "",
     product: "",
-    quantity: 0,
+    quantity: 1,
     weight: "",
     timeLimit: "",
   });
   const [errors, setErrors] = useState({});
 
   const changeHandler = (event) => {
-    /*  const { name, value } = event.target;
+    const { name, value } = event.target;
     setForm({
       ...form,
       [name]: value,
@@ -25,17 +25,17 @@ const PublicationForm = () => {
     setErrors({
       ...errors,
       [name]: validationErrors[name] ? validationErrors[name] : "",
-    }); */
+    });
   };
 
   const submitHandler = (event) => {
-    /* event.preventDefault();
+    event.preventDefault();
     const validationErrors = validator(form);
     setErrors(validationErrors);
     if (Object.keys(validationErrors).length === 0) {
       console.log("Formulario válido, enviar datos:", form);
     }
-    console.log("Enviar formulario", form); */
+    console.log("Enviar formulario", form);
   };
 
   return (
@@ -56,6 +56,7 @@ const PublicationForm = () => {
               onChange={changeHandler}
               required
             />
+            {errors.name && <span className="text-red-500">{errors.name}</span>}
           </div>
 
           <div className="flex flex-col mb-5">
@@ -67,6 +68,9 @@ const PublicationForm = () => {
               onChange={changeHandler}
               required
             ></textarea>
+            {errors.description && (
+              <span className="text-red-500">{errors.description}</span>
+            )}
           </div>
 
           <div className="flex flex-col mb-5">
@@ -82,6 +86,7 @@ const PublicationForm = () => {
               <option value="food">Comida</option>
               <option value="notFood">No Comida</option>
             </select>
+            {errors.type && <span className="text-red-500">{errors.type}</span>}
           </div>
 
           <div className="flex flex-col mb-5">
@@ -94,6 +99,9 @@ const PublicationForm = () => {
               onChange={changeHandler}
               required
             />
+            {errors.category && (
+              <span className="text-red-500">{errors.category}</span>
+            )}
           </div>
 
           <div className="flex flex-col mb-5">
@@ -106,6 +114,9 @@ const PublicationForm = () => {
               onChange={changeHandler}
               required
             />
+            {errors.product && (
+              <span className="text-red-500">{errors.product}</span>
+            )}
           </div>
 
           <div className="flex flex-col mb-5">
@@ -117,7 +128,11 @@ const PublicationForm = () => {
               value={form.quantity}
               onChange={changeHandler}
               required
+              min={1}
             />
+            {errors.quantity && (
+              <span className="text-red-500">{errors.quantity}</span>
+            )}
           </div>
 
           <div className="flex flex-col mb-5">
@@ -130,6 +145,9 @@ const PublicationForm = () => {
               onChange={changeHandler}
               required
             />
+            {errors.weight && (
+              <span className="text-red-500">{errors.weight}</span>
+            )}
           </div>
 
           <div className="flex flex-col mb-5">
@@ -144,6 +162,9 @@ const PublicationForm = () => {
               onChange={changeHandler}
               required
             />
+            {errors.timeLimit && (
+              <span className="text-red-500">{errors.timeLimit}</span>
+            )}
           </div>
 
           <button
