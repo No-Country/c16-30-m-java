@@ -12,6 +12,7 @@ module.exports = {
         "codgray" : "#1E1E1E",
         "red-orange" : "#FF4538",
         "dove-gray" : "#696969",
+        "concrete" : "#F3F3F3",
       },
       backgroundColor: {
         footer: "var(--footer-background)",
