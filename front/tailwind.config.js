@@ -13,6 +13,7 @@ module.exports = {
         "red-orange" : "#FF4538",
         "dove-gray" : "#696969",
         "concrete" : "#F3F3F3",
+        "red-orange" : "#FF4538",
       },
       backgroundColor: {
         footer: "var(--footer-background)",
