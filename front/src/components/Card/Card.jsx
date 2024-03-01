@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Card = (props) => {
   const svgUser = (
@@ -150,39 +151,47 @@ const Card = (props) => {
   const img =
     "https://s3-alpha-sig.figma.com/img/2b2b/6aef/dcb3b2ccb96f89eb652bc254a5c0afb1?Expires=1710115200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=IAhAdu5OmD8lvhB~krSDZL6L09gAleLx44xBjA1hFPV~O5Otzr3FyH3jGDVYzL8IWCd48vlJcKPGU0wsmtOpmKMKjSEp5LhnwjCZV6V0MCZepUrinazsg-6rfFHQXMIKIwBclJeDdij4s~5nj7Um0jgyVQBNH~1nki5K6INrKI-Cp2iZK5uSisg9YDnMBYKwaByfxt9WD9lklz1umfF~Cmmg1HeqhV1v21dv3oVx7FrteI7rIBa7R5jVgx9U5ZHcnJ9uN~jghM-2oppCOm25Ld036EaF2IlMhzN9yF92-JcFKZf7ooAEMBipO5lyK0~FTsUGT2OoSZO5aWwqhMKK9A__";
   return (
-    <div className="flex relative bg-concrete rounded-lg p-4 shadow-md mb-4 w-[824px] h-[200px]">
-      <img className="w-[219px] h-[169px] border-[0.25px] rounded-[5px]" src={img} alt="imagen de la card" />
-      <div className="text-[14px]">
-        <div className="absolute right-6">{svgFavorite}</div>
-        <div>
-          <h3 className="text-lg font-bold mb-2 text-[28px] px-4">{props.name}</h3>
-          <div className="flex">
-            <div className="flex px-4 mt-2">
-              {svgUser}
-              <label className="font-[400] ml-1">JuanP</label>
-            </div>
-            <div className="flex px-4">
-              {svgStar}
-              <label className="font-[400] ml-1">4.5</label>
-            </div>
-          </div>
-          <p className="mb-2 mt-4 px-4">Descripción: {props.description}</p>
-          <div className="flex mt-8">
-            <div className="flex px-4">
-              {svgLocation}
-              <label className="font-[400]">0,5 Km</label>
-            </div>
+    <Link to={"/detailview"}>
+      <div className="flex relative bg-concrete rounded-lg p-4 shadow-md mb-4 w-[824px] h-[200px]">
+        <img
+          className="w-[219px] h-[169px] border-[0.25px] rounded-[5px]"
+          src={img}
+          alt="imagen de la card"
+        />
+        <div className="text-[14px]">
+          <div className="absolute right-6">{svgFavorite}</div>
+          <div>
+            <h3 className="text-lg font-bold mb-2 text-[28px] px-4">
+              {props.name}
+            </h3>
             <div className="flex">
-              {svgViews}
-              <label className="font-[400] ml-1">2</label>
+              <div className="flex px-4 mt-2">
+                {svgUser}
+                <label className="font-[400] ml-1">JuanP</label>
+              </div>
+              <div className="flex px-4">
+                {svgStar}
+                <label className="font-[400] ml-1">4.5</label>
+              </div>
             </div>
-            <label className="absolute right-6 text-red-orange font-bold text-[22px]">
-              Nuevo!
-            </label>
+            <p className="mb-2 mt-4 px-4">Descripción: {props.description}</p>
+            <div className="flex mt-8">
+              <div className="flex px-4">
+                {svgLocation}
+                <label className="font-[400]">0,5 Km</label>
+              </div>
+              <div className="flex">
+                {svgViews}
+                <label className="font-[400] ml-1">2</label>
+              </div>
+              <label className="absolute right-6 text-red-orange font-bold text-[22px]">
+                Nuevo!
+              </label>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
