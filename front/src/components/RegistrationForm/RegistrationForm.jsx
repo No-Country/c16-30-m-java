@@ -36,7 +36,7 @@ export default function Registro({ useLogin, setUseLogin }) {
 
   return (
     <>
-      {useLogin == false && (
+      {useLogin === false && (
         <div className="bg-white w-96 p-3">
           <form className="m-auto" onSubmit={onSubmit}>
             <h1 className="text-3xl p-2 m-2 text-center font-bold">
@@ -194,7 +194,7 @@ export default function Registro({ useLogin, setUseLogin }) {
               <option value="vn">Venezuela</option>
             </select>
 
-            {watch("country") == "ar" && (
+            {watch("country") === "ar" && (
               <>
                 <div className="relative my-7">
                 <label htmlFor="region" className="absolute bg-white top-[-15px] left-[12px] px-2 py-0">Region</label>
@@ -214,7 +214,7 @@ export default function Registro({ useLogin, setUseLogin }) {
                 </div>
               </>
             )}
-            {watch("country") == "vn" && (
+            {watch("country") === "vn" && (
               <>
                 <div className="relative my-7">
 
@@ -235,7 +235,7 @@ export default function Registro({ useLogin, setUseLogin }) {
                 </div>
               </>
             )}
-            {watch("country") == "it" && (
+            {watch("country") === "it" && (
               <>
                 <div className="relative my-7">
                 <label htmlFor="region" className="absolute bg-white top-[-15px] left-[12px] px-2 py-0">Region</label>
