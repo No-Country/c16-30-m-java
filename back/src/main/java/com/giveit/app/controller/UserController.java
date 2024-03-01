@@ -1,7 +1,7 @@
 package com.giveit.app.controller;
 
 import com.giveit.app.dto.request.UserRequestDto;
-import com.giveit.app.service.UserService;
+import com.giveit.app.service.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,7 @@ import static com.giveit.app.exceptions.config.ResponseBuilder.*;
 @RequestMapping("/users")
 @RequiredArgsConstructor
 public class UserController {
-    private final UserService service;
+    private final IUserService service;
 
     @GetMapping
     public ResponseEntity<?> findAll(){

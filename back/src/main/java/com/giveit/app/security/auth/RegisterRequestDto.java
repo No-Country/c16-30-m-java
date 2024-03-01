@@ -1,24 +1,20 @@
-package com.giveit.app.entity;
+package com.giveit.app.security.auth;
 
-import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
-@Table(name = "users")
 @Getter @Setter
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String name;
-
-    private String dni;
+@AllArgsConstructor
+public class RegisterRequestDto {
 
     private String email;
 
     private String password;
+
+    private String name;
+
+    private String dni;
 
     private String country;
 
@@ -29,4 +25,5 @@ public class User {
     private String location;
 
     private String phone;
+
 }
