@@ -82,7 +82,7 @@ export default function Login({ useLogin, setUseLogin }) {
             ¿Todavía No tienes cuenta?{" "}
             <button
               className="text-red-orange"
-              onClick={(() => setUseLogin(!useLogin), handleSubmit)}
+              onClick={(() => setUseLogin(!useLogin))}
             >
               Registrate aqui
             </button>

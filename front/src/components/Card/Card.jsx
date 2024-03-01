@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import UserLogoandCalification from "../UserLogoandCalification/UserLogoandCalification";
+
 const Card = (props) => {
   const svgUser = (
     <svg
@@ -164,16 +166,7 @@ const Card = (props) => {
             <h3 className="text-lg font-bold mb-2 text-[28px] px-4">
               {props.name}
             </h3>
-            <div className="flex">
-              <div className="flex px-4 mt-2">
-                {svgUser}
-                <label className="font-[400] ml-1">JuanP</label>
-              </div>
-              <div className="flex px-4">
-                {svgStar}
-                <label className="font-[400] ml-1">4.5</label>
-              </div>
-            </div>
+            <UserLogoandCalification />
             <p className="mb-2 mt-4 px-4">Descripción: {props.description}</p>
             <div className="flex mt-8">
               <div className="flex px-4">
