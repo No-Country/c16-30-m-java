@@ -12,7 +12,7 @@ export default function Registro({ useLogin, setUseLogin }) {
 
   const onSubmit = handleSubmit((data) => {
     console.log(data);
-    alert("enviando datos...");
+    alert("enviando datos....");
 
     reset();
     {/*
