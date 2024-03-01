@@ -9,6 +9,7 @@ import FooterSocialLink from "../components/FooterSocialLink/FooterSocialLink.js
 import About from "./About/About.jsx";
 import Legalities from "./Legalities/Legalities.jsx";
 import Publish from "./Publish/Publish.jsx";
+import DetailView from "./DetailView/DetailView.jsx";
 // eslint-disable-next-line
 export {
   Home,
@@ -21,4 +22,5 @@ export {
   FooterSocialLink,
   Mensajes,
   Publish,
+  DetailView
 };
