@@ -4,7 +4,7 @@
 
 :root {
   /* Fonts */
-  --main-font: 'Gill Sans MT';
+  --main-font: "Gill Sans MT";
 
   /* Colors */
   --text-main-color: #000;
@@ -13,18 +13,33 @@
   /* Font Sizes */
   --text-normal: 20px;
 }
+
 body {
   margin: 0;
-  height: 100svh;
+  min-height: 100svh;
   box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: var(--main-font), -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.box-shadow-hero {
+  box-shadow: 1px 1px 25px 0px rgba(0, 0, 0, 0.2);
+}
+
+.home-cols {
+  display: grid;
+  grid-template-columns: minmax(420px, 20rem) 1fr;
+}
+
+.home-rows {
+  display: grid;
+  grid-template-rows: minmax(min-content, 100px);
 }

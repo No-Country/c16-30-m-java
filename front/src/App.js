@@ -4,12 +4,14 @@ import {
   MisPublicaciones,
   MiCuenta,
   Mensajes,
+  Favorites,
   About,
   Legalities,
   Publish,
 } from "./views";
 import NavBar from "./views/NavBar/NavBar";
 import { Footer } from "./layout";
+import DetailView from "./views/DetailView/DetailView";
 
 function App() {
   //const location = useLocation();
@@ -21,9 +23,11 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/favorites" element={<Favorites />} />
         <Route path="/legalities" element={<Legalities />} />
         <Route path="/micuenta" element={<MiCuenta />} />
         <Route path="/mispublicaciones" element={<MisPublicaciones />} />
+        <Route path="/detailview" element={<DetailView />} />
         <Route path="/mensajes" element={<Mensajes />} />
         <Route path="/publish" element={<Publish />} />
       </Routes>

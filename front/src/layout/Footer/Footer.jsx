@@ -53,11 +53,11 @@ const Footer = () => {
           <div className="grid grid-cols-2 gap-10 justify-items-center">
             <FooterSocialLink
               url="https://www.instagram.com"
-              svg={<Facebook />}
+              svg={<Instagram />}
             />
             <FooterSocialLink
               url="https://www.facebook.com"
-              svg={<Instagram />}
+              svg={<Facebook />}
             />
             <FooterSocialLink url="https://www.twitter.com" svg={<Twitter />} />
             <FooterSocialLink

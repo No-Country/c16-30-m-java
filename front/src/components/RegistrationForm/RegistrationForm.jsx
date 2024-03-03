@@ -12,7 +12,7 @@ export default function Registro({ useLogin, setUseLogin }) {
 
   const onSubmit = handleSubmit((data) => {
     console.log(data);
-    alert("enviando datos...");
+    alert("enviando datos....");
 
     reset();
     {/*
@@ -59,7 +59,7 @@ export default function Registro({ useLogin, setUseLogin }) {
             </div>
 
             {/* email */}
-            <div className="relative">
+            <div className="relative my-7">
               <label
                 htmlFor="email"
                 className="absolute bg-white top-[-15px] left-[12px] px-2 py-0"
@@ -67,7 +67,7 @@ export default function Registro({ useLogin, setUseLogin }) {
                 Correo electronico
               </label>
               <input
-                className="w-[349px] h-10 p-5 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
+                className="w-[349px] h-9 p-5 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
                 placeholder="ejemplo@email.com"
                 id="email"
                 type="email"
@@ -82,19 +82,19 @@ export default function Registro({ useLogin, setUseLogin }) {
                   },
                 })}
               />
-            </div>
-
             {errors.email && (
               <span className="block text-red-600 text-xs">
                 {errors.email.message}
               </span>
             )}
+            </div>
+
 
             {/* password */}
             <div className="relative my-7">
             <label htmlFor="password" className="absolute bg-white top-[-15px] left-[12px] px-2 py-0">Contraseña</label>
             <input
-              className="w-[349px] h-10 p-5 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
+              className="w-[349px] h-9 p-5 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
               placeholder="********"
               type="password"
               id="password"
@@ -109,20 +109,20 @@ export default function Registro({ useLogin, setUseLogin }) {
                 },
               })}
             />
-            </div>
-
             {errors.password && (
               <span className="block text-red-600 text-xs">
                 {errors.password.message}
               </span>
             )}
+            </div>
+
 
             {/* confirm password */}
             <div className="relative my-7">
 
             <label htmlFor="confirmPassword" className="absolute bg-white top-[-15px] left-[12px] px-2 py-0">Confirmar contraseña</label>
             <input
-              className="w-[349px] h-10 p-5 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
+              className="w-[349px] h-9 p-5 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
               placeholder="********"
               id="confirmPassword"
               type="password"
@@ -136,19 +136,19 @@ export default function Registro({ useLogin, setUseLogin }) {
                   value === watch("password") || "Las contraseñas no coinciden",
               })}
             />
-            </div>
-
             {errors.confirmPassword && (
               <span className="block text-red-600 text-xs">
                 {errors.confirmPassword.message}
               </span>
             )}
+            </div>
+
 
             {/* name */}
             <div className="relative my-7">
             <label htmlFor="name" className="absolute bg-white top-[-15px] left-[12px] px-2 py-0">Nombre y apellido</label>
             <input
-              className="w-[349px] h-10 p-5 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
+              className="w-[349px] h-9 p-5 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
               placeholder="Ej: Maria Inés Lopez"
               type="text"
               id="name"
@@ -167,19 +167,19 @@ export default function Registro({ useLogin, setUseLogin }) {
                 },
               })}
             />
-            </div>
             {errors.name && (
               <span className="block text-red-600 text-xs">
                 {errors.name.message}
               </span>
             )}
+            </div>
 
             {/* country */}
             <div className="relative my-7">
 
             <label htmlFor="country" className="absolute bg-white top-[-15px] left-[12px] px-2 py-0">Pais</label>
             <select
-              className="w-[349px] p-3 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
+              className="w-[349px] h-12 p-1 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
               id="country"
               {...register("country", {
                 required: true,
@@ -200,7 +200,7 @@ export default function Registro({ useLogin, setUseLogin }) {
                 <label htmlFor="region" className="absolute bg-white top-[-15px] left-[12px] px-2 py-0">Region</label>
                 <select
                   id="region"
-                  className="w-[349px]  p-3 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
+                  className="w-[349px] h-12 p-1 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
                 >
                   <option selected="true" disabled="disabled">
                     Seleccione región
@@ -221,7 +221,7 @@ export default function Registro({ useLogin, setUseLogin }) {
                 <label htmlFor="region" className="absolute bg-white top-[-15px] left-[12px] px-2 py-0">Region</label>
                 <select
                   id="region"
-                  className="w-[349px] p-3 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
+                  className="w-[349px] h-12 p-1 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
                 >
                   <option selected="true" disabled="disabled">
                     Seleccione región
@@ -241,7 +241,7 @@ export default function Registro({ useLogin, setUseLogin }) {
                 <label htmlFor="region" className="absolute bg-white top-[-15px] left-[12px] px-2 py-0">Region</label>
                 <select
                   id="region"
-                  className="w-[349px] p-3 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
+                  className="w-[349px] h-12 p-1 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
                 >
                   <option selected="true" disabled="disabled">
                     Seleccione región
@@ -264,7 +264,7 @@ export default function Registro({ useLogin, setUseLogin }) {
             )}
 
             {/* terms and conditions */}
-            <div className="flex my-2">
+            <div className="my-2">
               <input
                 className="w-4"
                 id="terms"
@@ -279,13 +279,13 @@ export default function Registro({ useLogin, setUseLogin }) {
               <label className="p-1" htmlFor="terms">
                 Acepto términos y condiciones
               </label>
-            </div>
-
             {errors.terms && (
               <span className="block text-red-600 text-xs">
                 {errors.terms.message}
               </span>
             )}
+            </div>
+
 
             <button className="bg-genoa text-white font-bold w-[349px] h-10 rounded-3xl my-4">
               Registrarse

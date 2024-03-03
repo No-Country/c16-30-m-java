@@ -2,8 +2,13 @@ import React from "react";
 
 const Pagination = ({ loadMore }) => {
   return (
-    <nav>
-      <button onClick={loadMore}>Cargar más</button>
+    <nav className="mt-4 flex justify-center">
+      <button
+        className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+        onClick={loadMore}
+      >
+        Cargar más
+      </button>
     </nav>
   );
 };

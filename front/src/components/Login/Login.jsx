@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { helpHttp } from "../../common/helpHttp";
 
 export default function Login({ useLogin, setUseLogin }) {
   const [username, setUsername] = useState("");
@@ -11,31 +12,26 @@ export default function Login({ useLogin, setUseLogin }) {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  let api = helpHttp();
 
-    console.log(username);
-    console.log(password);
-    {/*
-    try {
-      async () => {
-        const response = await fetch("url", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username,
-            password,
-          }),
-        });
-      };
-    } catch (error) {
-      console.log(error);
-    }
-  */}
-    alert("Iniciando sesión");
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log("asd")
+    let options = {
+      body: {email: username,
+      password}
   };
+  
+    await api.post("auth/login", options).then((res) => {
+      if (!res.err) {
+      //setReportData(res);
+      console.log(res)
+      } else {
+      //setErrorMessage(res.errors);
+      console.log(res.errors)
+      }
+  }).catch((err) => console.log(err));
+  }
 
   return (
     <>
@@ -47,7 +43,12 @@ export default function Login({ useLogin, setUseLogin }) {
             </h1>
             {/* correo */}
             <div className="relative my-7">
-              <label htmlFor="email" className="absolute bg-white top-[-15px] left-[12px] px-2 py-0">Correo electronico</label>
+              <label
+                htmlFor="email"
+                className="absolute bg-white top-[-15px] left-[12px] px-2 py-0"
+              >
+                Correo electronico
+              </label>
               <input
                 className="w-[349px] h-10 p-5 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
                 id="email"
@@ -58,7 +59,12 @@ export default function Login({ useLogin, setUseLogin }) {
               />
             </div>
             <div className="relative">
-              <label htmlFor="pass" className="absolute bg-white top-[-15px] left-[12px] px-2 py-0">Contraseña</label>
+              <label
+                htmlFor="pass"
+                className="absolute bg-white top-[-15px] left-[12px] px-2 py-0"
+              >
+                Contraseña
+              </label>
               <input
                 className="w-[349px] h-10 p-5 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
                 id="pass"
@@ -76,7 +82,7 @@ export default function Login({ useLogin, setUseLogin }) {
             ¿Todavía No tienes cuenta?{" "}
             <button
               className="text-red-orange"
-              onClick={() => setUseLogin(!useLogin)}
+              onClick={(() => setUseLogin(!useLogin))}
             >
               Registrate aqui
             </button>
