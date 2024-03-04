@@ -10,6 +10,8 @@ import About from "./About/About.jsx";
 import Legalities from "./Legalities/Legalities.jsx";
 import Publish from "./Publish/Publish.jsx";
 import DetailView from "./DetailView/DetailView.jsx";
+import NotFound from "./NotFound/NotFound.jsx";
+import Loading from "./Loading/Loading.jsx";
 // eslint-disable-next-line
 export {
   Home,
@@ -22,5 +24,7 @@ export {
   FooterSocialLink,
   Mensajes,
   Publish,
-  DetailView
+  DetailView,
+  NotFound,
+  Loading,
 };
