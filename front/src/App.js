@@ -17,8 +17,8 @@ import { ProductsProvider } from "./contexts/ProductsContext";
 function App() {
   return (
     <>
-      <Routes>
-        <ProductsProvider>
+      <ProductsProvider>
+        <Routes>
           <Route element={<Layout />}>
             <Route exact path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
@@ -31,9 +31,9 @@ function App() {
             <Route path="/mensajes" element={<Mensajes />} />
             <Route path="/publish" element={<Publish />} />
           </Route>
-        </ProductsProvider>
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </ProductsProvider>
     </>
   );
 }
