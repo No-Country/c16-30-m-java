@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import CardsContainer from "../../components/CardContainer/CardContainer";
 import products from "../../products.json";
 import Pagination from "../../components/Pagination/Pagination";
@@ -8,6 +8,7 @@ import mapLogo from "../../assets/map.svg";
 import Switch from "../../components/Switch/Switch";
 import Filters from "../../components/Filters/Filters";
 import Spacer from "../../components/Spacer/Spacer";
+import { ProductsContext } from "../../contexts/ProductsContext";
 
 const foodFilters = {
   noFood: "No comida",
@@ -16,6 +17,8 @@ const foodFilters = {
 
 const Home = () => {
   const [appProducts, setAppProducts] = useState([]);
+  const { data } = useContext(ProductsContext);
+  console.log(data);
   const [filters, setFilters] = useState(foodFilters.noFood);
   const [currentPage, setCurrentPage] = useState(1);
   const appProductsPerPage = 4;
