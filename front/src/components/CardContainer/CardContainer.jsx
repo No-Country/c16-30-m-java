@@ -8,6 +8,8 @@ const CardsContainer = ({ currentAppProducts }) => {
         {currentAppProducts.map((p) => (
           <div className="card-container" key={p.userId}>
             <Card
+              type={p.type}
+              id={p.userGiverId}
               name={p.name}
               description={p.description}
               weight={p.weight}
