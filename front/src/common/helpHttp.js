@@ -1,5 +1,5 @@
 export const helpHttp = () => {
-    const serverApi = "https://giveit-app.onrender.com/api/auth/login";
+    const serverApi = "https://giveit-app.onrender.com/api/";
     
     const customFetch = async (endpoint, options) => {
   
