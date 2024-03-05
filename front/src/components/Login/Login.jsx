@@ -18,7 +18,7 @@ export default function Login({ useLogin, setUseLogin }) {
     event.preventDefault();
     console.log("asd")
     let options = {
-      body: {email: username,
+      body: {email: username.toLowerCase(),
       password}
   };
   
