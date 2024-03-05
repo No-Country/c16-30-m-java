@@ -12,8 +12,6 @@ public class UserResponseDto {
 
     private String name;
 
-    private String dni;
-
     private String email;
 
     private String password;
