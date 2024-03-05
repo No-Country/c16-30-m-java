@@ -5,8 +5,16 @@ export const ProductsContext = createContext(null);
 
 export const ProductsProvider = ({ children }) => {
   const [data, setData] = useState(products);
+
+  const [productName, setProductName] = useState("");
+
+  const nameHandler = () => {
+    if (productName) {
+      setProductName(productName);
+    }
+  };
   return (
-    <ProductsContext.Provider value={{ data, setData }}>
+    <ProductsContext.Provider value={{ data, setData, nameHandler }}>
       {children}
     </ProductsContext.Provider>
   );
