@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import CardsContainer from "../../components/CardContainer/CardContainer";
-import products from "../../products.json";
+/* import products from "../../products.json";*/
 import Pagination from "../../components/Pagination/Pagination";
 import { Hero } from "../../layout";
 import { Link } from "react-router-dom";
@@ -16,24 +16,26 @@ const foodFilters = {
 };
 
 const Home = () => {
-  const [appProducts, setAppProducts] = useState([]);
   const { data } = useContext(ProductsContext);
-  console.log(data);
+  const [appProducts, setAppProducts] = useState([]);
   const [filters, setFilters] = useState(foodFilters.noFood);
   const [currentPage, setCurrentPage] = useState(1);
   const appProductsPerPage = 4;
 
   const filterProds = (filter, page) => {
-    const filteredProducts = products
+    const filteredProducts = data
       .filter((product) => product.type === filter)
       .slice(0, page);
     setAppProducts(filteredProducts);
   };
 
   useEffect(() => {
+    setAppProducts(data.slice(0, appProductsPerPage));
+  }, [data]);
+
+  useEffect(() => {
     filterProds(filters, appProductsPerPage);
   }, [filters]);
-
   const handleSwitch = () => {
     if (filters === foodFilters.noFood) {
       setFilters(foodFilters.food);
@@ -47,9 +49,15 @@ const Home = () => {
   const loadMore = () => {
     const indexOfLastAppProduct = currentPage * appProductsPerPage;
     filterProds(filters, indexOfLastAppProduct);
+    const newAppProducts = data.slice(
+      0,
+      Math.min(indexOfLastAppProduct, data.length)
+    );
+    setAppProducts(newAppProducts);
     setCurrentPage(currentPage + 1);
   };
 
+  console.log(data);
   return (
     <main>
       <Hero />
@@ -75,7 +83,7 @@ const Home = () => {
             <Filters />
           </aside>
           <aside>
-            <CardsContainer currentAppProducts={data} />
+            <CardsContainer currentAppProducts={appProducts} />
             <Pagination loadMore={loadMore} />
           </aside>
         </section>

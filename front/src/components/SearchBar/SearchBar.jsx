@@ -1,13 +1,23 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { ProductsContext } from "../../contexts/ProductsContext";
 
 const SearchBar = () => {
   const [name, setName] = useState("");
   const { searchByName } = useContext(ProductsContext);
 
+  useEffect(() => {
+    if (!name) {
+      searchByName(name);
+    }
+    // eslint-disable-next-line
+  }, [name]);
+
   const setNameHandler = (event) => {
     setName(event.target.value);
-    searchByName(event.target.value);
+  };
+
+  const onSearch = () => {
+    searchByName(name);
   };
 
   const svgArrowBuscar = (
@@ -65,7 +75,7 @@ const SearchBar = () => {
         onChange={setNameHandler}
         value={name}
       />
-      <button>{svgArrowBuscar}</button>
+      <button onClick={onSearch}>{svgArrowBuscar}</button>
     </div>
   );
 };
