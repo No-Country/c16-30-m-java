@@ -1,21 +1,24 @@
 package com.giveit.app.controller;
 
-import com.giveit.app.dto.request.UserRequestDto;
-import com.giveit.app.service.IUserService;
-import com.giveit.app.service.UserService;
+import com.giveit.app.dto.request.PublicationRequestDto;
+
+import com.giveit.app.service.IPublicationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import static com.giveit.app.exceptions.config.ResponseBuilder.*;
+
+import static com.giveit.app.exceptions.config.ResponseBuilder.responseBuilder;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/publications")
 @RequiredArgsConstructor
-public class UserController {
-    private final IUserService service;
 
+public class PublicationController {
+
+
+    private final IPublicationService service;
     @GetMapping
     public ResponseEntity<?> findAll(){
         return responseBuilder(HttpStatus.OK, service.findAll());
@@ -27,12 +30,12 @@ public class UserController {
     }
 
     @PostMapping()
-    public ResponseEntity<?> update(@RequestBody UserRequestDto data){
+    public ResponseEntity<?> update(@RequestBody PublicationRequestDto data){
         return responseBuilder(HttpStatus.OK, service.create(data));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody UserRequestDto data){
+    public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody PublicationRequestDto data){
         return responseBuilder(HttpStatus.OK, service.update(id, data));
     }
 

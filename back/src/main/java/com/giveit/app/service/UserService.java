@@ -8,6 +8,7 @@ import com.giveit.app.exceptions.ResourceNotFoundException;
 import com.giveit.app.mapper.GenericMapper;
 import com.giveit.app.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.ExpressionException;
 import org.springframework.stereotype.Service;
 
