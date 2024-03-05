@@ -8,13 +8,23 @@ export const ProductsProvider = ({ children }) => {
 
   const [productName, setProductName] = useState("");
 
-  const nameHandler = () => {
-    if (productName) {
-      setProductName(productName);
+  const nameHandler = (name) => {
+    if (name) {
+      setProductName(name);
     }
   };
+
+  const searchByName = (name) => {
+    const filteredProducts = products.filter((product) =>
+      product.name.toLowerCase().includes(name.toLowerCase())
+    );
+    setData(filteredProducts);
+  };
+
   return (
-    <ProductsContext.Provider value={{ data, setData, nameHandler }}>
+    <ProductsContext.Provider
+      value={{ data, setData, nameHandler, searchByName }}
+    >
       {children}
     </ProductsContext.Provider>
   );

@@ -75,7 +75,7 @@ const Home = () => {
             <Filters />
           </aside>
           <aside>
-            <CardsContainer currentAppProducts={appProducts} />
+            <CardsContainer currentAppProducts={data} />
             <Pagination loadMore={loadMore} />
           </aside>
         </section>

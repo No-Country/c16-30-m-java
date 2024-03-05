@@ -3,16 +3,12 @@ import { ProductsContext } from "../../contexts/ProductsContext";
 
 const SearchBar = () => {
   const [name, setName] = useState("");
+  const { searchByName } = useContext(ProductsContext);
 
   const setNameHandler = (event) => {
     setName(event.target.value);
+    searchByName(event.target.value);
   };
-
-  const { data } = useContext(ProductsContext);
-  console.log("Productos", data);
-
-  const { nameHandler } = useContext(ProductsContext);
-  console.log("name function", nameHandler);
 
   const svgArrowBuscar = (
     <svg
