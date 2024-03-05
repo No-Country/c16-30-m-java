@@ -24,6 +24,9 @@ module.exports = {
       fontFamily: {
         main: ["var(--main-font)", "sans-serif"],
       },
+      boxShadow: {
+        'txl' : '1px 1px 25px 0px rgba(0, 0, 0, 0.20);'
+      }
     },
   },
   plugins: [],

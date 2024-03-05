@@ -7,10 +7,12 @@ import Modal from "../../components/Modal/Modal";
 import Logo from "../../components/Logo/Logo";
 import MenuNavBar from "../../components/MenuNavBar/MenuNavBar";
 import Boton from "../../components/Boton/Boton";
+import SideBar from "../../components/SideBar/SideBar";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoged, setIsLoged] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <>
@@ -19,15 +21,20 @@ const NavBar = () => {
         <SearchBar />
 
         {isLoged ? (
-          <div className="flex justify-around">
-            <MenuNavBar />
-            <Boton
-              styles={
-                "bg-genoa text-white font-bold h-10 w-[183px] rounded-3xl"
-              }
-            >
-              Publicar
-            </Boton>
+          <div>
+            <div className="flex justify-around">
+              <MenuNavBar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+              <Boton
+                styles={
+                  "bg-genoa text-white font-bold h-10 w-[183px] rounded-3xl"
+                }
+              >
+                Publicar
+              </Boton>
+            </div>
+            <div className="absolute">
+              {isMenuOpen && <SideBar />}
+            </div>
           </div>
         ) : (
           <div>
