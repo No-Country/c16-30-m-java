@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { helpHttp } from "../../common/helpHttp";
 
-export default function Login({ useLogin, setUseLogin, isLoged, setIsLoged }) {
+import { ProductsContext } from "../../contexts/ProductsContext";
+
+export default function Login({ useLogin, setUseLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const { isLoged, setIsLoged } = useContext(ProductsContext);
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);

@@ -10,8 +10,13 @@ import { Link } from "react-router-dom";
 
 import BtnSideBar from "../BtnSideBar/BtnSideBar";
 
-export default function SideBar({isMenuOpen, setIsMenuOpen, isLoged, setIsLoged}) {
+import { ProductsContext } from "../../contexts/ProductsContext";
+import { useContext } from "react";
+
+export default function SideBar({isMenuOpen, setIsMenuOpen}) {
   const userName = "Juan";
+
+  const { isLoged, setIsLoged } = useContext(ProductsContext);
 
   return (
     <div className="">
