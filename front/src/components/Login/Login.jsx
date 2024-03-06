@@ -29,7 +29,7 @@ export default function Login({ useLogin, setUseLogin }) {
       if (!res.err) {
       //setReportData(res);
       console.log(res)
-      setIsLoged(!isLoged)
+      setIsLoged(true)
       } else {
       //setErrorMessage(res.errors);
       console.log(res.errors)
