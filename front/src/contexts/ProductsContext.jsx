@@ -5,6 +5,11 @@ export const ProductsContext = createContext(null);
 
 export const ProductsProvider = ({ children }) => {
   const [data, setData] = useState(products);
+  const [filters, setFilters] = useState({
+    type: "No comida",
+    name: "",
+    category: "all",
+  });
 
   const [productName, setProductName] = useState("");
 
@@ -23,7 +28,7 @@ export const ProductsProvider = ({ children }) => {
 
   return (
     <ProductsContext.Provider
-      value={{ data, setData, nameHandler, searchByName }}
+      value={{ data, setData, filters, setFilters, nameHandler, searchByName }}
     >
       {children}
     </ProductsContext.Provider>

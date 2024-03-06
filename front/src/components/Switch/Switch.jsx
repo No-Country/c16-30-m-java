@@ -1,7 +1,17 @@
-// import React, { useState } from "react";
+import { useFilters } from "../../hooks/useFilters";
 
-const Switch = ({ isPressed, handleSwitch }) => {
-  // const [isPressed, setIsPressed] = useState(false);
+const types = {
+  noFood: "No comida",
+  food: "Comida",
+};
+
+const Switch = () => {
+  const { filters, setFilters } = useFilters();
+
+  const handleSwitch = (type) => {
+    setFilters({ ...filters, type: type });
+  };
+
   const Button = ({ text, buttonColor, value, setValue }) => {
     return (
       <button
@@ -18,23 +28,23 @@ const Switch = ({ isPressed, handleSwitch }) => {
     <div className="bg-[#EAEAEA] font-main rounded-[66px] max-w-[420px] w-full flex font-semibold p-1">
       <Button
         text={"No Comida"}
-        value={isPressed}
+        value={filters.type === types.noFood}
         buttonColor={
-          isPressed
+          filters.type === types.noFood
             ? "bg-primary text-white cursor-default"
             : "bg-[#EAEAEA] text-black"
         }
-        setValue={handleSwitch}
+        setValue={() => handleSwitch(types.noFood)}
       />
       <Button
         text={"Comida"}
-        value={!isPressed}
+        value={filters.type === types.food}
         buttonColor={
-          isPressed
-            ? "bg-[#EAEAEA] text-black"
-            : "bg-primary text-white cursor-default"
+          filters.type === types.food
+            ? "bg-primary text-white cursor-default"
+            : "bg-[#EAEAEA] text-black"
         }
-        setValue={handleSwitch}
+        setValue={() => handleSwitch(types.food)}
       />
     </div>
   );
