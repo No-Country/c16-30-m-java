@@ -41,7 +41,7 @@ export default function Login({ useLogin, setUseLogin, isLoged, setIsLoged }) {
             <h1 className="text-3xl p-2 m-2 text-center font-bold">
               Bienvenid@!
             </h1>
-            {/* correo */}
+            {/* correo electronico */}
             <div className="relative my-7">
               <label
                 htmlFor="email"
