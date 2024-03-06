@@ -16,15 +16,21 @@ public class PublicationSpecification {
     }
 
     public static Specification<Publication>  hasCategory(String category){
+        if(category==null || category.isBlank())
+            return (root, query, builder) -> builder.conjunction();
         return (root, query, builder) -> builder.equal(root.get("category"),category);
     }
 
     public static Specification<Publication>  hasName(String name){
-        return (root, query, builder) -> builder.equal(root.get("name"),name);
+        if(name==null || name.isBlank())
+            return (root, query, builder) -> builder.conjunction();
+        return (root, query, builder) -> builder.like(root.get("name"),"%" + name + "%");
     }
 
     public static Specification<Publication>  hasProduct(String product){
-        return (root, query, builder) -> builder.equal(root.get("product"),product);
+        if(product==null || product.isBlank())
+            return (root, query, builder) -> builder.conjunction();
+        return (root, query, builder) -> builder.like(root.get("product"),"%" + product + "%");
     }
 }
 

@@ -85,18 +85,10 @@ public class PublicationService implements IPublicationService {
 
     @Override
     public List<PublicationResponseDto> findFiltered(PublicationType type, String category, String name, String product) {
-        Specification query = Specification.where(hasStatus(PublicationStatus.CREATED).and(hasType(type)));
-        if(category!=null && !category.isBlank())
-            query.and(hasCategory(category));
-
-        if(name!=null && !name.isBlank())
-            query.and(hasName(name));
-
-        if(product!=null && !product.isBlank())
-            query.and(hasProduct(product));
+        Specification query = hasStatus(PublicationStatus.CREATED).and(hasType(type)).and(hasCategory(category)).and(hasName(name)).and(hasProduct(product));
 
         return mapper.mapAll(
-                repository.findAll(query)
+                repository.findAll(Specification.where(query))
                 ,PublicationResponseDto.class);
     }
 }
