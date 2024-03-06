@@ -23,28 +23,28 @@ export default function SideBar({isMenuOpen, setIsMenuOpen}) {
           <h2 className="text-[22px] font-bold">Hola {userName}!</h2>
         </div>
 
-        <Link to={"/mispublicaciones"}>
+        <Link to={"/underconstruction"}>
         <BtnSideBar svg={svgMisPublicaciones}>Mis Publicaciones</BtnSideBar>
         </Link>
-        <Link to={"/mensajes"}>
+        <Link to={"/underconstruction"}>
         <BtnSideBar svg={svgMensajes}>Mensajes</BtnSideBar>
         </Link>
-        <Link to={"/favorites"}>
+        <Link to={"/underconstruction"}>
         <BtnSideBar svg={svgFavoritos}>Favoritos</BtnSideBar>
         </Link>
-        <Link>
+        <Link to={"/underconstruction"}>
         <BtnSideBar svg={svgObjetosSolicitados}>Objetos Solicitados</BtnSideBar>
         </Link>
         <div className="border-b-2 w-4/5 my-0 mx-auto mb-[21px]"></div>
-        <Link to={"/micuenta"}>
+        <Link to={"/underconstruction"}>
         <BtnSideBar svg={svgMiCuenta}>Mi Cuenta</BtnSideBar>
         </Link>
-        <Link>
+        <Link to={"/underconstruction"}>
         <BtnSideBar svg={svgConfiguracion}>Configuración</BtnSideBar>
         </Link>
-        <Link>
+        <Link to={"/underconstruction"}>
         <BtnSideBar svg={svgAyuda}>Ayuda</BtnSideBar>
-        </Link>
+        </Link >
         <div className="w-full text-center">
         <button className="text-red-orange text-[20px] font-bold border-b-[1px] border-red-orange">Log out</button>
         </div>
