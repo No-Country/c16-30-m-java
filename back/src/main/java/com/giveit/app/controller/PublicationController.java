@@ -2,6 +2,7 @@ package com.giveit.app.controller;
 
 import com.giveit.app.dto.request.PublicationRequestDto;
 
+import com.giveit.app.entity.PublicationType;
 import com.giveit.app.service.IPublicationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -28,9 +29,14 @@ public class PublicationController {
     public ResponseEntity<?> find(@PathVariable("id") Long id){
         return responseBuilder(HttpStatus.OK, service.findById(id));
     }
+    @GetMapping("/by/")
+    public ResponseEntity<?> findFiltered(@RequestParam(defaultValue = "FOOD") PublicationType type, @RequestParam(required = false) String category
+            , @RequestParam(required = false) String name, @RequestParam(required = false) String product){
+        return responseBuilder(HttpStatus.OK, service.findFiltered(type,category,name,product));
+    }
 
     @PostMapping()
-    public ResponseEntity<?> update(@RequestBody PublicationRequestDto data){
+    public ResponseEntity<?> create(@RequestBody PublicationRequestDto data){
         return responseBuilder(HttpStatus.OK, service.create(data));
     }
 

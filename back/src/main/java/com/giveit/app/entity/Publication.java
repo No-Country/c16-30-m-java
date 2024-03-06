@@ -22,7 +22,8 @@ public class Publication {
     private Long ownerId;
     private Long userId;
     private String description;
-    private String type;
+    private PublicationType type;
+    private String name;
     private String category;
     private String product;
     private Long quantity;

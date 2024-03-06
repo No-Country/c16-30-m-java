@@ -4,15 +4,19 @@ import com.giveit.app.dto.request.PublicationRequestDto;
 import com.giveit.app.dto.response.PublicationResponseDto;
 import com.giveit.app.entity.Publication;
 import com.giveit.app.entity.PublicationStatus;
+import com.giveit.app.entity.PublicationType;
 import com.giveit.app.exceptions.ResourceNotFoundException;
 import com.giveit.app.mapper.GenericMapper;
 import com.giveit.app.repository.PublicationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
+import static com.giveit.app.repository.PublicationSpecification.*;
 
 @Service
 @RequiredArgsConstructor
@@ -26,9 +30,13 @@ public class PublicationService implements IPublicationService {
 
     @Override
     public PublicationResponseDto create(PublicationRequestDto data) {
-        Publication publication = mapper.map(data, Publication.class);
+        System.out.println(data.getType());
+        Publication publication= mapper.map(data, Publication.class);
+        publication.setType(data.getType());
+        System.out.println(publication.getType());
         publication.setStatus(PublicationStatus.CREATED);
         repository.save(publication);
+
 
         return mapper.map(publication, PublicationResponseDto.class);
     }
@@ -73,5 +81,22 @@ public class PublicationService implements IPublicationService {
         publication.setStatus(PublicationStatus.CANCELED);
         repository.save(publication);
 
+    }
+
+    @Override
+    public List<PublicationResponseDto> findFiltered(PublicationType type, String category, String name, String product) {
+        Specification query = Specification.where(hasStatus(PublicationStatus.CREATED).and(hasType(type)));
+        if(category!=null && !category.isBlank())
+            query.and(hasCategory(category));
+
+        if(name!=null && !name.isBlank())
+            query.and(hasName(name));
+
+        if(product!=null && !product.isBlank())
+            query.and(hasProduct(product));
+
+        return mapper.mapAll(
+                repository.findAll(query)
+                ,PublicationResponseDto.class);
     }
 }
