@@ -1,6 +1,5 @@
-import { useState, useEffect, useContext } from "react";
+import { useState } from "react";
 import CardsContainer from "../../components/CardContainer/CardContainer";
-/* import products from "../../products.json";*/
 import Pagination from "../../components/Pagination/Pagination";
 import { Hero } from "../../layout";
 import { Link } from "react-router-dom";
@@ -8,56 +7,21 @@ import mapLogo from "../../assets/map.svg";
 import Switch from "../../components/Switch/Switch";
 import Filters from "../../components/Filters/Filters";
 import Spacer from "../../components/Spacer/Spacer";
-import { ProductsContext } from "../../contexts/ProductsContext";
-
-const foodFilters = {
-  noFood: "No comida",
-  food: "Comida",
-};
+import initialProds from "../../products.json";
+import { useFilters } from "../../hooks/useFilters";
 
 const Home = () => {
-  const { data } = useContext(ProductsContext);
-  const [appProducts, setAppProducts] = useState([]);
-  const [filters, setFilters] = useState(foodFilters.noFood);
-  const [currentPage, setCurrentPage] = useState(1);
-  const appProductsPerPage = 4;
+  const { filterProducts } = useFilters();
+  const filteredProducts = filterProducts(initialProds);
 
-  const filterProds = (filter, page) => {
-    const filteredProducts = data
-      .filter((product) => product.type === filter)
-      .slice(0, page);
-    setAppProducts(filteredProducts);
+  const [visibleProducts, setVisibleProducts] = useState(4);
+
+  const loadMoreProducts = () => {
+    setVisibleProducts((prevVisibleProducts) => prevVisibleProducts + 4);
   };
 
-  useEffect(() => {
-    setAppProducts(data.slice(0, appProductsPerPage));
-  }, [data]);
+  const currentAppProducts = filteredProducts.slice(0, visibleProducts);
 
-  useEffect(() => {
-    filterProds(filters, appProductsPerPage);
-  }, [filters]);
-  const handleSwitch = () => {
-    if (filters === foodFilters.noFood) {
-      setFilters(foodFilters.food);
-      filterProds(foodFilters.food, appProductsPerPage);
-    } else {
-      setFilters(foodFilters.noFood);
-      filterProds(foodFilters.noFood, appProductsPerPage);
-    }
-  };
-
-  const loadMore = () => {
-    const indexOfLastAppProduct = currentPage * appProductsPerPage;
-    filterProds(filters, indexOfLastAppProduct);
-    const newAppProducts = data.slice(
-      0,
-      Math.min(indexOfLastAppProduct, data.length)
-    );
-    setAppProducts(newAppProducts);
-    setCurrentPage(currentPage + 1);
-  };
-
-  console.log(data);
   return (
     <main>
       <Hero />
@@ -75,16 +39,15 @@ const Home = () => {
         </section>
         <section className="home-cols justify-center">
           <aside className="px-4 border-r border-opacity-30 border-gray-600 border-solid">
-            <Switch
-              isPressed={filters === foodFilters.noFood}
-              handleSwitch={handleSwitch}
-            />
+            <Switch />
             <Spacer height={40} />
             <Filters />
           </aside>
           <aside>
-            <CardsContainer currentAppProducts={appProducts} />
-            <Pagination loadMore={loadMore} />
+            <CardsContainer currentAppProducts={currentAppProducts} />
+            {visibleProducts < filteredProducts.length && (
+              <Pagination loadMore={loadMoreProducts} />
+            )}
           </aside>
         </section>
       </div>

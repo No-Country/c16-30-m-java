@@ -1,13 +1,15 @@
 import React, { useState, useContext, useEffect } from "react";
 import { ProductsContext } from "../../contexts/ProductsContext";
+import { useFilters } from "../../hooks/useFilters";
 
 const SearchBar = () => {
   const [name, setName] = useState("");
-  const { searchByName } = useContext(ProductsContext);
+  const { filters, setFilters } = useFilters();
+  // const { searchByName } = useContext(ProductsContext);
 
   useEffect(() => {
     if (!name) {
-      searchByName(name);
+      setFilters({ ...filters, name: name });
     }
     // eslint-disable-next-line
   }, [name]);
@@ -17,7 +19,8 @@ const SearchBar = () => {
   };
 
   const onSearch = () => {
-    searchByName(name);
+    setFilters({ ...filters, name: name });
+    // searchByName(name);
   };
 
   const svgArrowBuscar = (
