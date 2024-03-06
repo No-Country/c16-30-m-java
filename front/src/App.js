@@ -13,6 +13,7 @@ import {
 import DetailView from "./views/DetailView/DetailView";
 import { Layout } from "./layout";
 import { ProductsProvider } from "./contexts/ProductsContext";
+import UnderConstruction from "./views/UnderConstruction/UnderConstruction";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="/detailview/:productId" element={<DetailView />} />
             <Route path="/mensajes" element={<Mensajes />} />
             <Route path="/publish" element={<Publish />} />
+            <Route path="/underconstruction" element={<UnderConstruction />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
