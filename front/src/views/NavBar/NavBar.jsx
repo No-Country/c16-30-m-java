@@ -33,7 +33,7 @@ const NavBar = () => {
               </Boton>
             </div>
             <div className="absolute">
-              {isMenuOpen && <SideBar />}
+              {isMenuOpen && <SideBar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} isLoged={isLoged} setIsLoged={setIsLoged} />}
             </div>
           </div>
         ) : (
@@ -46,7 +46,7 @@ const NavBar = () => {
             >
               Ingresar | Registrarse
             </Boton>
-            <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen} isLoged={isLoged} setIsLoged={setIsLoged} />
           </div>
         )}
       </div>

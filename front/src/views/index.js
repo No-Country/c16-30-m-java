@@ -12,6 +12,7 @@ import Publish from "./Publish/Publish.jsx";
 import DetailView from "./DetailView/DetailView.jsx";
 import NotFound from "./NotFound/NotFound.jsx";
 import Loading from "./Loading/Loading.jsx";
+import UnderConstruction from "./UnderConstruction/UnderConstruction.jsx";
 // eslint-disable-next-line
 export {
   Home,
@@ -27,4 +28,5 @@ export {
   DetailView,
   NotFound,
   Loading,
+  UnderConstruction,
 };
