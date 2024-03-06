@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { helpHttp } from "../../common/helpHttp";
 
-export default function Login({ useLogin, setUseLogin }) {
+export default function Login({ useLogin, setUseLogin, isLoged, setIsLoged }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -16,7 +16,6 @@ export default function Login({ useLogin, setUseLogin }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("asd")
     let options = {
       body: {email: username.toLowerCase(),
       password}
@@ -26,6 +25,7 @@ export default function Login({ useLogin, setUseLogin }) {
       if (!res.err) {
       //setReportData(res);
       console.log(res)
+      setIsLoged(!isLoged)
       } else {
       //setErrorMessage(res.errors);
       console.log(res.errors)

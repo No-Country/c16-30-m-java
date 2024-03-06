@@ -11,7 +11,7 @@ import SideBar from "../../components/SideBar/SideBar";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoged, setIsLoged] = useState(true);
+  const [isLoged, setIsLoged] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -33,7 +33,7 @@ const NavBar = () => {
               </Boton>
             </div>
             <div className="absolute">
-              {isMenuOpen && <SideBar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />}
+              {isMenuOpen && <SideBar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} isLoged={isLoged} setIsLoged={setIsLoged} />}
             </div>
           </div>
         ) : (
@@ -46,7 +46,7 @@ const NavBar = () => {
             >
               Ingresar | Registrarse
             </Boton>
-            <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen} isLoged={isLoged} setIsLoged={setIsLoged} />
           </div>
         )}
       </div>
