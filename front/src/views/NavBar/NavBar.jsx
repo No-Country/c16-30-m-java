@@ -1,7 +1,9 @@
 import React from "react";
 import SearchBar from "../../components/SearchBar/SearchBar";
 
-import { useState } from "react";
+import { ProductsContext } from "../../contexts/ProductsContext";
+
+import { useState, useContext } from "react";
 import Modal from "../../components/Modal/Modal";
 
 import Logo from "../../components/Logo/Logo";
@@ -11,8 +13,9 @@ import SideBar from "../../components/SideBar/SideBar";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoged, setIsLoged] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
+  const { isLoged, setIsLoged } = useContext(ProductsContext);
 
   return (
     <>
@@ -33,7 +36,7 @@ const NavBar = () => {
               </Boton>
             </div>
             <div className="absolute">
-              {isMenuOpen && <SideBar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} isLoged={isLoged} setIsLoged={setIsLoged} />}
+              {isMenuOpen && <SideBar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />}
             </div>
           </div>
         ) : (
@@ -46,7 +49,7 @@ const NavBar = () => {
             >
               Ingresar | Registrarse
             </Boton>
-            <Modal isOpen={isOpen} setIsOpen={setIsOpen} isLoged={isLoged} setIsLoged={setIsLoged} />
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen}/>
           </div>
         )}
       </div>
