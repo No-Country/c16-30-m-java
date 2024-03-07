@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { helpHttp } from "../../common/helpHttp";
 
 export default function Registro({ useLogin, setUseLogin }) {
   const {
@@ -10,9 +11,10 @@ export default function Registro({ useLogin, setUseLogin }) {
     reset,
   } = useForm();
 
-  const onSubmit = handleSubmit((data) => {
+  let api = helpHttp();
+
+ const onSubmit = handleSubmit((data) => {
     console.log(data);
-    console.log(data.email);
     alert("enviando datos....");
 
     let options = {
@@ -20,31 +22,31 @@ export default function Registro({ useLogin, setUseLogin }) {
         email: data.email.toLowerCase(),
         password: data.password,
         name: data.name,
-        country: data.country
+        dni: "dni",
+        country: data.country,
+        region: data.region,
+        city: data.city,
+        location: "location",
+        phone: data.phone
       },
     };
+ {/*
+    await api.post("auth/register", options).then((res) => {
+      if (!res.err) {
+      //setReportData(res);
+      console.log(res)
+      } else {
+      //setErrorMessage(res.errors);
+      console.log(res.errors)
+      }
+  }).catch((err) => console.log(err));
 
     reset();
-    {
-      /*
-    try {
-      async () => {
-        const response = await fetch("url", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            data,
-          }),
-        });
-      };
-    } catch (error) {
-      console.log(error);
-    }
-  */
-    }
+  */}
   });
+
+
+  
 
   return (
     <>
@@ -198,6 +200,42 @@ export default function Registro({ useLogin, setUseLogin }) {
               )}
             </div>
 
+            {/* phone */}
+            <div className="relative my-7">
+              <label
+                htmlFor="phone"
+                className="absolute bg-white top-[-15px] left-[12px] px-2 py-0"
+              >
+                Teléfono
+              </label>
+              <input
+                className="w-[349px] h-9 p-5 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
+                placeholder="Ej: 35433543"
+                type="number"
+                id="phone"
+                {...register("phone", {
+                  required: {
+                    value: true,
+                    message: "Teléfono es requerido",
+                  },
+                  minLength: {
+                    value: 8,
+                    message: "El teléfono debe tener al menos 8 caracteres",
+                  },
+                  maxLength: {
+                    value: 15,
+                    message: "El teléfpno debe tener como maximo 20 caracteres",
+                  },
+                })}
+              />
+              {errors.phone && (
+                <span className="block text-red-600 text-xs">
+                  {errors.phone.message}
+                </span>
+              )}
+            </div>
+
+
             {/* country */}
             <div className="relative my-7">
               <label
@@ -233,6 +271,10 @@ export default function Registro({ useLogin, setUseLogin }) {
                     </label>
                     <select
                       id="region"
+                      {...register("region", {
+                        required: true,
+                        message: "Region es requerido",
+                      })}
                       className="w-[349px] h-12 p-1 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
                     >
                       <option selected="true" disabled="disabled">
@@ -258,6 +300,10 @@ export default function Registro({ useLogin, setUseLogin }) {
                     </label>
                     <select
                       id="region"
+                      {...register("region", {
+                        required: true,
+                        message: "Region es requerido",
+                      })}
                       className="w-[349px] h-12 p-1 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
                     >
                       <option selected="true" disabled="disabled">
@@ -283,6 +329,10 @@ export default function Registro({ useLogin, setUseLogin }) {
                     </label>
                     <select
                       id="region"
+                      {...register("region", {
+                        required: true,
+                        message: "Region es requerido",
+                      })}
                       className="w-[349px] h-12 p-1 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
                     >
                       <option selected="true" disabled="disabled">
@@ -305,28 +355,41 @@ export default function Registro({ useLogin, setUseLogin }) {
               </span>
             )}
 
-            {/* terms and conditions */}
-            <div className="my-2">
+            {/* city */}
+            <div className="relative my-7">
+              <label
+                htmlFor="city"
+                className="absolute bg-white top-[-15px] left-[12px] px-2 py-0"
+              >
+                Ciudad
+              </label>
               <input
-                className="w-4"
-                id="terms"
-                type="checkbox"
-                {...register("terms", {
+                className="w-[349px] h-9 p-5 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
+                placeholder="Ingrese su ciudad"
+                type="text"
+                id="city"
+                {...register("city", {
                   required: {
                     value: true,
-                    message: "Debe aceptar los terminos y condiciones",
+                    message: "Ciudad es requerida",
+                  },
+                  minLength: {
+                    value: 3,
+                    message: "La ciudad debe tener al menos 3 caracteres",
+                  },
+                  maxLength: {
+                    value: 20,
+                    message: "La Ciudad debe tener como maximo 20 caracteres",
                   },
                 })}
               />
-              <label className="p-1" htmlFor="terms">
-                Acepto términos y condiciones
-              </label>
-              {errors.terms && (
+              {errors.city && (
                 <span className="block text-red-600 text-xs">
-                  {errors.terms.message}
+                  {errors.city.message}
                 </span>
               )}
             </div>
+
 
             <button className="bg-genoa text-white font-bold w-[349px] h-10 rounded-3xl my-4">
               Registrarse
