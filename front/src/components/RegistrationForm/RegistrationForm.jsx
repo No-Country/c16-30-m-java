@@ -13,7 +13,7 @@ export default function Registro({ useLogin, setUseLogin }) {
 
   let api = helpHttp();
 
- const onSubmit = handleSubmit((data) => {
+ const onSubmit = handleSubmit(async (data) => {
     console.log(data);
     alert("enviando datos....");
 
@@ -30,7 +30,7 @@ export default function Registro({ useLogin, setUseLogin }) {
         phone: data.phone
       },
     };
- {/*
+ 
     await api.post("auth/register", options).then((res) => {
       if (!res.err) {
       //setReportData(res);
@@ -42,7 +42,7 @@ export default function Registro({ useLogin, setUseLogin }) {
   }).catch((err) => console.log(err));
 
     reset();
-  */}
+
   });
 
 
