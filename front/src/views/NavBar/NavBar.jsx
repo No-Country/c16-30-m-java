@@ -12,10 +12,9 @@ import Boton from "../../components/Boton/Boton";
 import SideBar from "../../components/SideBar/SideBar";
 
 const NavBar = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
-  const { isLoged, setIsLoged } = useContext(ProductsContext);
+  const { isLoged, setIsOpen } = useContext(ProductsContext);
 
   return (
     <>
@@ -45,11 +44,11 @@ const NavBar = () => {
               styles={
                 "bg-genoa bg text-white font-bold w-64 h-10 rounded-3xl my-4"
               }
-              onClick={() => setIsOpen(!isOpen)}
+              onClick={() => setIsOpen(true)}
             >
               Ingresar | Registrarse
             </Boton>
-            <Modal isOpen={isOpen} setIsOpen={setIsOpen}/>
+            <Modal/>
           </div>
         )}
       </div>

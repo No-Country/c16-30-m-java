@@ -2,7 +2,11 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import HashLink from "../HashLink";
 
+import { useContext } from "react";
+import { ProductsContext } from "../../contexts/ProductsContext";
+
 const PublishModal = () => {
+  const { isLoged } = useContext(ProductsContext);
   return (
     <div className="bg-[#fff] w-[420px] rounded-2xl absolute bottom-8 right-10 font-main box-shadow-hero">
       <div className="mt-[30px] mb-[16px] mx-[18px] flex flex-col justify-between">
@@ -18,7 +22,7 @@ const PublishModal = () => {
             ¿Como funciona GiveIt?
           </HashLink>
           <NavLink
-            to="/publish"
+            to={isLoged? "/publish" : "/"}
             className="bg-primary text-white py-[8px] rounded-[100px] px-[50px] font-bold hover:brightness-110 transition-[filter] ease-in duration-200"
           >
             Publicar
