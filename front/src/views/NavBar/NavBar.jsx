@@ -1,5 +1,6 @@
 import React from "react";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import { NavLink } from "react-router-dom";
 
 import { ProductsContext } from "../../contexts/ProductsContext";
 
@@ -13,7 +14,7 @@ import SideBar from "../../components/SideBar/SideBar";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
+
   const { isLoged, setIsOpen } = useContext(ProductsContext);
 
   return (
@@ -25,17 +26,24 @@ const NavBar = () => {
         {isLoged ? (
           <div>
             <div className="flex justify-around">
-              <MenuNavBar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-              <Boton
-                styles={
-                  "bg-genoa text-white font-bold h-10 w-[183px] rounded-3xl"
-                }
+              <MenuNavBar
+                isMenuOpen={isMenuOpen}
+                setIsMenuOpen={setIsMenuOpen}
+              />
+              <NavLink
+                to={isLoged ? "/publish" : "/"}
+                className="bg-primary text-white py-[8px] rounded-[100px] px-[50px] font-bold hover:brightness-110 transition-[filter] ease-in duration-200"
               >
                 Publicar
-              </Boton>
+              </NavLink>
             </div>
             <div className="absolute">
-              {isMenuOpen && <SideBar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />}
+              {isMenuOpen && (
+                <SideBar
+                  isMenuOpen={isMenuOpen}
+                  setIsMenuOpen={setIsMenuOpen}
+                />
+              )}
             </div>
           </div>
         ) : (
@@ -48,7 +56,7 @@ const NavBar = () => {
             >
               Ingresar | Registrarse
             </Boton>
-            <Modal/>
+            <Modal />
           </div>
         )}
       </div>

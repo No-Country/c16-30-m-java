@@ -131,10 +131,10 @@ export default function MenuNavBar({isMenuOpen, setIsMenuOpen}) {
 
         {/* Menu Navbar */}
         <div className="flex mx-2 justify-around items-center w-[180px]">
-          <Link to={"/mensajes"}>
+          <Link to={"/underconstruction"}>
             <button>{svgMessage}</button>
           </Link>
-          <Link to={"/favorites"}>
+          <Link to={"/underconstruction"}>
             <button>{svgFavorites}</button>
           </Link>
 
