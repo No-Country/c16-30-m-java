@@ -51,7 +51,9 @@ export default function SideBar({isMenuOpen, setIsMenuOpen}) {
         <BtnSideBar svg={svgAyuda}>Ayuda</BtnSideBar>
         </Link >
         <div className="w-full text-center">
-        <button onClick={()=> setIsLoged(false)} className="text-red-orange text-[20px] font-bold border-b-[1px] border-red-orange">Log out</button>
+        <button onClick={()=> {setIsLoged(false)
+                                window.location.href='http://localhost:3000/home'}} 
+                                className="text-red-orange text-[20px] font-bold border-b-[1px] border-red-orange">Log out</button>
         </div>
         
           </div>
