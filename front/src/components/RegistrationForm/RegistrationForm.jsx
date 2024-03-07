@@ -12,10 +12,21 @@ export default function Registro({ useLogin, setUseLogin }) {
 
   const onSubmit = handleSubmit((data) => {
     console.log(data);
+    console.log(data.email);
     alert("enviando datos....");
 
+    let options = {
+      body: {
+        email: data.email.toLowerCase(),
+        password: data.password,
+        name: data.name,
+        country: data.country
+      },
+    };
+
     reset();
-    {/*
+    {
+      /*
     try {
       async () => {
         const response = await fetch("url", {
@@ -31,7 +42,8 @@ export default function Registro({ useLogin, setUseLogin }) {
     } catch (error) {
       console.log(error);
     }
-  */}
+  */
+    }
   });
 
   return (
@@ -82,179 +94,209 @@ export default function Registro({ useLogin, setUseLogin }) {
                   },
                 })}
               />
-            {errors.email && (
-              <span className="block text-red-600 text-xs">
-                {errors.email.message}
-              </span>
-            )}
+              {errors.email && (
+                <span className="block text-red-600 text-xs">
+                  {errors.email.message}
+                </span>
+              )}
             </div>
-
 
             {/* password */}
             <div className="relative my-7">
-            <label htmlFor="password" className="absolute bg-white top-[-15px] left-[12px] px-2 py-0">Contraseña</label>
-            <input
-              className="w-[349px] h-9 p-5 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
-              placeholder="********"
-              type="password"
-              id="password"
-              {...register("password", {
-                required: {
-                  value: true,
-                  message: "Password es requerido",
-                },
-                minLength: {
-                  value: 6,
-                  message: "La contraseña debe tener al menos 6 caracteres",
-                },
-              })}
-            />
-            {errors.password && (
-              <span className="block text-red-600 text-xs">
-                {errors.password.message}
-              </span>
-            )}
+              <label
+                htmlFor="password"
+                className="absolute bg-white top-[-15px] left-[12px] px-2 py-0"
+              >
+                Contraseña
+              </label>
+              <input
+                className="w-[349px] h-9 p-5 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
+                placeholder="********"
+                type="password"
+                id="password"
+                {...register("password", {
+                  required: {
+                    value: true,
+                    message: "Password es requerido",
+                  },
+                  minLength: {
+                    value: 6,
+                    message: "La contraseña debe tener al menos 6 caracteres",
+                  },
+                })}
+              />
+              {errors.password && (
+                <span className="block text-red-600 text-xs">
+                  {errors.password.message}
+                </span>
+              )}
             </div>
-
 
             {/* confirm password */}
             <div className="relative my-7">
+              <label
+                htmlFor="confirmPassword"
+                className="absolute bg-white top-[-15px] left-[12px] px-2 py-0"
+              >
+                Confirmar contraseña
+              </label>
+              <input
+                className="w-[349px] h-9 p-5 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
+                placeholder="********"
+                id="confirmPassword"
+                type="password"
+                {...register("confirmPassword", {
+                  required: {
+                    value: true,
+                    message: "Confirmar password es requerido",
+                  },
 
-            <label htmlFor="confirmPassword" className="absolute bg-white top-[-15px] left-[12px] px-2 py-0">Confirmar contraseña</label>
-            <input
-              className="w-[349px] h-9 p-5 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
-              placeholder="********"
-              id="confirmPassword"
-              type="password"
-              {...register("confirmPassword", {
-                required: {
-                  value: true,
-                  message: "Confirmar password es requerido",
-                },
-
-                validate: (value) =>
-                  value === watch("password") || "Las contraseñas no coinciden",
-              })}
-            />
-            {errors.confirmPassword && (
-              <span className="block text-red-600 text-xs">
-                {errors.confirmPassword.message}
-              </span>
-            )}
+                  validate: (value) =>
+                    value === watch("password") ||
+                    "Las contraseñas no coinciden",
+                })}
+              />
+              {errors.confirmPassword && (
+                <span className="block text-red-600 text-xs">
+                  {errors.confirmPassword.message}
+                </span>
+              )}
             </div>
-
 
             {/* name */}
             <div className="relative my-7">
-            <label htmlFor="name" className="absolute bg-white top-[-15px] left-[12px] px-2 py-0">Nombre y apellido</label>
-            <input
-              className="w-[349px] h-9 p-5 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
-              placeholder="Ej: Maria Inés Lopez"
-              type="text"
-              id="name"
-              {...register("name", {
-                required: {
-                  value: true,
-                  message: "Nombre es requerido",
-                },
-                minLength: {
-                  value: 3,
-                  message: "El nombre debe tener al menos 3 caracteres",
-                },
-                maxLength: {
-                  value: 20,
-                  message: "El nombre debe tener como maximo 20 caracteres",
-                },
-              })}
-            />
-            {errors.name && (
-              <span className="block text-red-600 text-xs">
-                {errors.name.message}
-              </span>
-            )}
+              <label
+                htmlFor="name"
+                className="absolute bg-white top-[-15px] left-[12px] px-2 py-0"
+              >
+                Nombre y apellido
+              </label>
+              <input
+                className="w-[349px] h-9 p-5 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
+                placeholder="Ej: Maria Inés Lopez"
+                type="text"
+                id="name"
+                {...register("name", {
+                  required: {
+                    value: true,
+                    message: "Nombre es requerido",
+                  },
+                  minLength: {
+                    value: 3,
+                    message: "El nombre debe tener al menos 3 caracteres",
+                  },
+                  maxLength: {
+                    value: 20,
+                    message: "El nombre debe tener como maximo 20 caracteres",
+                  },
+                })}
+              />
+              {errors.name && (
+                <span className="block text-red-600 text-xs">
+                  {errors.name.message}
+                </span>
+              )}
             </div>
 
             {/* country */}
             <div className="relative my-7">
+              <label
+                htmlFor="country"
+                className="absolute bg-white top-[-15px] left-[12px] px-2 py-0"
+              >
+                Pais
+              </label>
+              <select
+                className="w-[349px] h-12 p-1 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
+                id="country"
+                {...register("country", {
+                  required: true,
+                  message: "País requerido",
+                })}
+              >
+                <option selected="true" disabled="disabled">
+                  Seleccione país
+                </option>
+                <option value="ar">Argentina</option>
+                <option value="it">Italia</option>
+                <option value="vn">Venezuela</option>
+              </select>
 
-            <label htmlFor="country" className="absolute bg-white top-[-15px] left-[12px] px-2 py-0">Pais</label>
-            <select
-              className="w-[349px] h-12 p-1 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
-              id="country"
-              {...register("country", {
-                required: true,
-                message: "País requerido",
-              })}
-            >
-              <option selected="true" disabled="disabled">
-                Seleccione país
-              </option>
-              <option value="ar">Argentina</option>
-              <option value="it">Italia</option>
-              <option value="vn">Venezuela</option>
-            </select>
-
-            {watch("country") == "ar" && (
-              <>
-                <div className="relative my-7">
-                <label htmlFor="region" className="absolute bg-white top-[-15px] left-[12px] px-2 py-0">Region</label>
-                <select
-                  id="region"
-                  className="w-[349px] h-12 p-1 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
-                >
-                  <option selected="true" disabled="disabled">
-                    Seleccione región
-                  </option>
-                  <option>Buenos Aires</option>
-                  <option>Córdoba</option>
-                  <option>Mendoza</option>
-                  <option>Neuquen</option>
-                  <option>Salta</option>
-                </select>
-                </div>
-              </>
-            )}
-            {watch("country") == "vn" && (
-              <>
-                <div className="relative my-7">
-
-                <label htmlFor="region" className="absolute bg-white top-[-15px] left-[12px] px-2 py-0">Region</label>
-                <select
-                  id="region"
-                  className="w-[349px] h-12 p-1 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
-                >
-                  <option selected="true" disabled="disabled">
-                    Seleccione región
-                  </option>
-                  <option>Barinas</option>
-                  <option>Caracas</option>
-                  <option>Cumaná</option>
-                  <option>Guayana</option>
-                  <option>Maracaibo</option>
-                </select>
-                </div>
-              </>
-            )}
-            {watch("country") == "it" && (
-              <>
-                <div className="relative my-7">
-                <label htmlFor="region" className="absolute bg-white top-[-15px] left-[12px] px-2 py-0">Region</label>
-                <select
-                  id="region"
-                  className="w-[349px] h-12 p-1 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
-                >
-                  <option selected="true" disabled="disabled">
-                    Seleccione región
-                  </option>
-                  <option>Bari</option>
-                  <option>L'Aquila</option>
-                  <option>Nápoles</option>
-                  <option>Palermo</option>
-                  <option>Roma</option>
-                </select>
-                </div>
-              </>
-            )}
+              {watch("country") == "ar" && (
+                <>
+                  <div className="relative my-7">
+                    <label
+                      htmlFor="region"
+                      className="absolute bg-white top-[-15px] left-[12px] px-2 py-0"
+                    >
+                      Region
+                    </label>
+                    <select
+                      id="region"
+                      className="w-[349px] h-12 p-1 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
+                    >
+                      <option selected="true" disabled="disabled">
+                        Seleccione región
+                      </option>
+                      <option>Buenos Aires</option>
+                      <option>Córdoba</option>
+                      <option>Mendoza</option>
+                      <option>Neuquen</option>
+                      <option>Salta</option>
+                    </select>
+                  </div>
+                </>
+              )}
+              {watch("country") == "vn" && (
+                <>
+                  <div className="relative my-7">
+                    <label
+                      htmlFor="region"
+                      className="absolute bg-white top-[-15px] left-[12px] px-2 py-0"
+                    >
+                      Region
+                    </label>
+                    <select
+                      id="region"
+                      className="w-[349px] h-12 p-1 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
+                    >
+                      <option selected="true" disabled="disabled">
+                        Seleccione región
+                      </option>
+                      <option>Barinas</option>
+                      <option>Caracas</option>
+                      <option>Cumaná</option>
+                      <option>Guayana</option>
+                      <option>Maracaibo</option>
+                    </select>
+                  </div>
+                </>
+              )}
+              {watch("country") == "it" && (
+                <>
+                  <div className="relative my-7">
+                    <label
+                      htmlFor="region"
+                      className="absolute bg-white top-[-15px] left-[12px] px-2 py-0"
+                    >
+                      Region
+                    </label>
+                    <select
+                      id="region"
+                      className="w-[349px] h-12 p-1 gap-[10px] border-solid border-2 border-codgray rounded outline-none text-sm tracking-wider"
+                    >
+                      <option selected="true" disabled="disabled">
+                        Seleccione región
+                      </option>
+                      <option>Bari</option>
+                      <option>L'Aquila</option>
+                      <option>Nápoles</option>
+                      <option>Palermo</option>
+                      <option>Roma</option>
+                    </select>
+                  </div>
+                </>
+              )}
             </div>
 
             {errors.country && (
@@ -279,13 +321,12 @@ export default function Registro({ useLogin, setUseLogin }) {
               <label className="p-1" htmlFor="terms">
                 Acepto términos y condiciones
               </label>
-            {errors.terms && (
-              <span className="block text-red-600 text-xs">
-                {errors.terms.message}
-              </span>
-            )}
+              {errors.terms && (
+                <span className="block text-red-600 text-xs">
+                  {errors.terms.message}
+                </span>
+              )}
             </div>
-
 
             <button className="bg-genoa text-white font-bold w-[349px] h-10 rounded-3xl my-4">
               Registrarse
