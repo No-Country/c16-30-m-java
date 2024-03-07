@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
+import { Link, redirect, useParams } from "react-router-dom";
 import backArrow from "../../assets/back-arrow.svg";
 import UserLogoandCalification from "../../components/UserLogoandCalification/UserLogoandCalification";
 import Boton from "../../components/Boton/Boton";
@@ -13,10 +13,14 @@ import imgApple from "../../assets/apple.webp";
 import { getProductById } from "../../services/getProductById";
 import Loading from "../Loading/Loading";
 
+import { ProductsContext } from "../../contexts/ProductsContext";
+
 export default function DetailView() {
   const { productId } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
+
+  const { isLoged, setIsOpen } = useContext(ProductsContext);
 
   useEffect(() => {
     getProductById(+productId).then((res) => {
@@ -92,13 +96,16 @@ export default function DetailView() {
             <label className="text-[20px] mr-5">
               Inicia la conversación con este usuario para acordar la entrega!
             </label>
+            
             <Boton
+              onClick={()=> isLoged? window.location.href='https://api.whatsapp.com/send?phone=543513513513' : setIsOpen(true)}
               styles={
                 "bg-genoa bg text-white font-bold w-64 h-10 rounded-3xl my-4"
               }
             >
               Solicitar este producto
             </Boton>
+
           </div>
         </div>
       </div>

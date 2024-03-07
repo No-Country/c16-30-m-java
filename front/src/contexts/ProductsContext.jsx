@@ -6,6 +6,7 @@ export const ProductsContext = createContext(null);
 export const ProductsProvider = ({ children }) => {
   const [data, setData] = useState(products);
   const [isLoged, setIsLoged] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [filters, setFilters] = useState({
     type: "No comida",
     name: "",
@@ -30,7 +31,7 @@ export const ProductsProvider = ({ children }) => {
 
   return (
     <ProductsContext.Provider
-      value={{ data, setData, filters, setFilters, nameHandler, searchByName, isLoged, setIsLoged }}
+      value={{ data, setData, filters, setFilters, nameHandler, searchByName, isLoged, setIsLoged, isOpen, setIsOpen }}
     >
       {children}
     </ProductsContext.Provider>

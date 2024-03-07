@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import React from "react";
 
 import Login from "../Login/Login";
 import RegistrationForm from "../RegistrationForm/RegistrationForm";
 
-export default function Modal({ isOpen, setIsOpen}) {
+import { ProductsContext } from "../../contexts/ProductsContext";
+
+export default function Modal({}) {
   const [useLogin, setUseLogin] = useState(true);
+  const { isOpen, setIsOpen } = useContext(ProductsContext);
 
   return (
     <>
