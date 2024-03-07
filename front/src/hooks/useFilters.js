@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { ProductsContext } from "../contexts/ProductsContext";
+import { categories } from "../utils/enums";
 
 export const useFilters = () => {
   const { filters, setFilters } = useContext(ProductsContext);
@@ -8,9 +9,8 @@ export const useFilters = () => {
     return products.filter((product) => {
       return (
         product.type === filters.type &&
-        (filters.category === "all" || product.category === filters.category) &&
-        (filters.name === "" ||
-          product.name.toLowerCase().startsWith(filters.name.toLowerCase()))
+        (filters.category === categories.ALL ||
+          product.category === filters.category)
       );
     });
   };

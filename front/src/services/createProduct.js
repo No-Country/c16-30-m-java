@@ -4,7 +4,7 @@ let api = helpHttp();
 
 export const createProduct = async (data) => {
   try {
-    const res = await api.post("publications", data);
+    const res = await api.post("publications", { body: data });
     return res;
   } catch (error) {
     console.error("An error has ocurred", error);

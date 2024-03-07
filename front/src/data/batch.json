@@ -1,0 +1,101 @@
+[
+  {
+    "description": "Camiseta de algodón negra",
+    "type": "NOT_FOOD",
+    "name": "Camiseta negra",
+    "category": "CLOTHES",
+    "product": "Camiseta",
+    "quantity": 5,
+    "weight": 2
+  },
+  {
+    "description": "Libro de ciencia ficción",
+    "type": "NOT_FOOD",
+    "name": "Libro de ciencia ficción",
+    "category": "BOOKS",
+    "product": "Libro",
+    "quantity": 1,
+    "weight": 8
+  },
+  {
+    "description": "Juego de construcción para niños",
+    "type": "NOT_FOOD",
+    "name": "Juego de construcción",
+    "category": "TOYS",
+    "product": "Juego",
+    "quantity": 1,
+    "weight": 5
+  },
+  {
+    "description": "Lavadora de carga frontal",
+    "type": "NOT_FOOD",
+    "name": "Lavadora de carga frontal",
+    "category": "ELECTRONICS",
+    "product": "Lavadora",
+    "quantity": 1,
+    "weight": 65
+  },
+  {
+    "description": "Manzanas frescas",
+    "type": "FOOD",
+    "name": "Manzanas",
+    "category": "FRUITS",
+    "product": "Manzanas",
+    "quantity": 10,
+    "weight": 2
+  },
+  {
+    "description": "Caja de cereal",
+    "type": "FOOD",
+    "name": "Cereal",
+    "category": "BREAKFAST",
+    "product": "Cereal",
+    "quantity": 1,
+    "weight": 5
+  },
+  {
+    "description": "Rompecabezas de 1000 piezas",
+    "type": "NOT_FOOD",
+    "name": "Rompecabezas",
+    "category": "TOYS",
+    "product": "Rompecabezas",
+    "quantity": 1,
+    "weight": 1.2
+  },
+  {
+    "description": "Silla ergonómica de oficina",
+    "type": "NOT_FOOD",
+    "name": "Silla ergonómica",
+    "category": "FURNITURE",
+    "product": "Silla",
+    "quantity": 1,
+    "weight": 12
+  },
+  {
+    "description": "Cepillo de dientes eléctrico",
+    "type": "NOT_FOOD",
+    "name": "Cepillo eléctrico",
+    "category": "CLEANING",
+    "product": "Cepillo de dientes",
+    "quantity": 1,
+    "weight": 4
+  },
+  {
+    "description": "Pelota de fútbol tamaño estándar",
+    "type": "NOT_FOOD",
+    "name": "Pelota de fútbol",
+    "category": "TOYS",
+    "product": "Pelota",
+    "quantity": 1,
+    "weight": 5
+  },
+  {
+    "description": "Set de vasos de cristal",
+    "type": "NOT_FOOD",
+    "name": "Set de vasos",
+    "category": "OTHERS",
+    "product": "Vasos",
+    "quantity": 6,
+    "weight": 2
+  }
+]

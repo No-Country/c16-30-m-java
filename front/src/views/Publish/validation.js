@@ -17,7 +17,7 @@ const validator = (data) => {
     errors.type = "El tipo es requerido";
   }
 
-  if (!data.category.trim()) {
+  if (!data.category) {
     errors.category = "La categoría es requerida";
   }
 
@@ -25,20 +25,16 @@ const validator = (data) => {
     errors.product = "El producto es requerido";
   }
 
-  if (data.quantity <= 0) {
+  if (!data.quantity.trim()) {
     errors.quantity = "La cantidad debe ser mayor que cero";
+  } else if (!/^[1-9]\d*$/.test(data.quantity)) {
+    errors.quantity = "La cantidad debe ser un número válido";
   }
 
   if (!data.weight.trim()) {
     errors.weight = "El peso es requerido";
   } else if (!/^\d+(\.\d{1,2})?$/.test(data.weight)) {
     errors.weight = "El peso debe ser un número válido";
-  }
-
-  if (!data.timeLimit.trim()) {
-    errors.timeLimit = "El límite de tiempo es requerido";
-  } else if (!/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/.test(data.timeLimit)) {
-    errors.timeLimit = "El límite de tiempo debe tener el formato HH:MM";
   }
 
   return errors;

@@ -1,18 +1,42 @@
 import React, { useState } from "react";
 import validator from "./validation";
+import { createProduct } from "../../services/createProduct";
+import { useNavigate } from "react-router-dom";
+import { categories, types } from "../../utils/enums";
 
 const PublicationForm = () => {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
-    name: "",
     description: "",
-    type: "",
+    type: types.FOOD,
+    name: "",
     category: "",
     product: "",
-    quantity: 1,
+    quantity: "",
     weight: "",
-    timeLimit: "",
   });
+
   const [errors, setErrors] = useState({});
+
+  const createProductHandler = (data) => {
+    const payload = {
+      ...data,
+      quantity: +data.quantity,
+      weight: +data.weight,
+      userId: 0,
+      ownerId: 0,
+    };
+    try {
+      const res = createProduct(payload);
+      if (res.status !== 400) {
+        alert("Enviado con exito");
+        navigate("/home");
+      }
+    } catch (error) {
+      console.error("An error has ocurred", error);
+      alert("Ocurrio un erro");
+    }
+  };
 
   const changeHandler = (event) => {
     const { name, value } = event.target;
@@ -33,9 +57,8 @@ const PublicationForm = () => {
     const validationErrors = validator(form);
     setErrors(validationErrors);
     if (Object.keys(validationErrors).length === 0) {
-      console.log("Formulario válido, enviar datos:", form);
+      createProductHandler(form);
     }
-    console.log("Enviar formulario", form);
   };
 
   return (
@@ -49,22 +72,23 @@ const PublicationForm = () => {
           <div className="flex flex-col mb-5">
             <label className="mb-2 font-bold text-gray-700">Nombre:</label>
             <input
-              className="py-2 px-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="py-2 px-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green"
               type="text"
               name="name"
+              placeholder="Ingrese el nombre del producto"
               value={form.name}
               onChange={changeHandler}
               required
             />
             {errors.name && <span className="text-red-500">{errors.name}</span>}
           </div>
-
           <div className="flex flex-col mb-5">
             <label className="mb-2 font-bold text-gray-700">Descripción:</label>
             <textarea
               name="description"
-              className="py-2 px-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="py-2 px-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green"
               value={form.description}
+              placeholder="Ingrese la descripción"
               onChange={changeHandler}
               required
             ></textarea>
@@ -77,28 +101,34 @@ const PublicationForm = () => {
             <label className="mb-2 font-bold text-gray-700">Tipo:</label>
             <select
               name="type"
-              className="py-2 px-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="py-2 px-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green"
               value={form.type}
               onChange={changeHandler}
               required
             >
-              <option value="">Seleccione uno</option>
-              <option value="food">Comida</option>
-              <option value="notFood">No Comida</option>
+              <option value={types.FOOD}>Comida</option>
+              <option value={types.NOT_FOOD}>No Comida</option>
             </select>
             {errors.type && <span className="text-red-500">{errors.type}</span>}
           </div>
 
           <div className="flex flex-col mb-5">
             <label className="mb-2 font-bold text-gray-700">Categoría:</label>
-            <input
-              className="py-2 px-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
-              type="text"
+            <select
               name="category"
+              className="py-2 px-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green"
               value={form.category}
               onChange={changeHandler}
               required
-            />
+            >
+              <option value="">Seleccione uno</option>
+              <option value={categories.ELECTRONICS}>Electrónica</option>
+              <option value={categories.CLOTHES}>Ropa</option>
+              <option value={categories.CLEANING}>Limpieza</option>
+              <option value={categories.TOYS}>Juguetes</option>
+              <option value={categories.BOOKS}>Libros</option>
+              <option value={categories.OTHERS}>Otros</option>
+            </select>
             {errors.category && (
               <span className="text-red-500">{errors.category}</span>
             )}
@@ -107,11 +137,12 @@ const PublicationForm = () => {
           <div className="flex flex-col mb-5">
             <label className="mb-2 font-bold text-gray-700">Producto:</label>
             <input
-              className="py-2 px-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="py-2 px-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green"
               type="text"
               name="product"
               value={form.product}
               onChange={changeHandler}
+              placeholder="Ingrese el producto"
               required
             />
             {errors.product && (
@@ -122,10 +153,11 @@ const PublicationForm = () => {
           <div className="flex flex-col mb-5">
             <label className="mb-2 font-bold text-gray-700">Cantidad:</label>
             <input
-              className="py-2 px-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="py-2 px-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green"
               type="number"
               name="quantity"
               value={form.quantity}
+              placeholder="0"
               onChange={changeHandler}
               required
               min={1}
@@ -138,11 +170,13 @@ const PublicationForm = () => {
           <div className="flex flex-col mb-5">
             <label className="mb-2 font-bold text-gray-700">Peso:</label>
             <input
-              className="py-2 px-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
-              type="text"
+              className="py-2 px-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green"
+              type="number"
               name="weight"
               value={form.weight}
               onChange={changeHandler}
+              placeholder="0"
+              min={0}
               required
             />
             {errors.weight && (
@@ -150,26 +184,9 @@ const PublicationForm = () => {
             )}
           </div>
 
-          <div className="flex flex-col mb-5">
-            <label className="mb-2 font-bold text-gray-700">
-              Límite de Tiempo:
-            </label>
-            <input
-              className="py-2 px-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
-              type="text"
-              name="timeLimit"
-              value={form.timeLimit}
-              onChange={changeHandler}
-              required
-            />
-            {errors.timeLimit && (
-              <span className="text-red-500">{errors.timeLimit}</span>
-            )}
-          </div>
-
           <button
             type="submit"
-            className="w-full bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition duration-200"
+            className="w-full bg-primary text-white py-2 px-4 rounded-lg hover:brightness-110 transition duration-200"
           >
             Crear Publicación
           </button>
