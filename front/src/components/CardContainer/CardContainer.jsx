@@ -14,7 +14,7 @@ const CardsContainer = ({ currentAppProducts }) => {
             <div className="card-container" key={p.userId}>
               <Card
                 type={p.type}
-                id={p.userGiverId}
+                id={p.id}
                 name={p.name}
                 description={p.description}
                 weight={p.weight}

@@ -10,7 +10,7 @@ export const useFilters = () => {
         product.type === filters.type &&
         (filters.category === "all" || product.category === filters.category) &&
         (filters.name === "" ||
-          product.name.toLowerCase().startsWith(filters.name.toLowerCase()))
+          product.name.toLowerCase().includes(filters.name.toLowerCase()))
       );
     });
   };

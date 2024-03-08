@@ -1,8 +1,8 @@
 import { useFilters } from "../../hooks/useFilters";
 
 const types = {
-  noFood: "No comida",
-  food: "Comida",
+  noFood: "NOT_FOOD",
+  food: "FOOD",
 };
 
 const Switch = () => {
@@ -27,7 +27,7 @@ const Switch = () => {
   return (
     <div className="bg-[#EAEAEA] font-main rounded-[66px] max-w-[420px] w-full flex font-semibold p-1">
       <Button
-        text={"No Comida"}
+        text={"NOT_FOOD"}
         value={filters.type === types.noFood}
         buttonColor={
           filters.type === types.noFood
@@ -37,7 +37,7 @@ const Switch = () => {
         setValue={() => handleSwitch(types.noFood)}
       />
       <Button
-        text={"Comida"}
+        text={"FOOD"}
         value={filters.type === types.food}
         buttonColor={
           filters.type === types.food

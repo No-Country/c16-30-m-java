@@ -10,12 +10,12 @@ import imgProd3 from "../../assets/img-prod-3.jpeg";
 import imgOrange from "../../assets/naranja.jpg";
 import imgBanana from "../../assets/bananas.jpg";
 import imgApple from "../../assets/apple.webp";
-import { getProductById } from "../../services/getProductById";
 import Loading from "../Loading/Loading";
 
 import { ProductsContext } from "../../contexts/ProductsContext";
 
 export default function DetailView() {
+  const { getProductById } = useContext(ProductsContext);
   const { productId } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
@@ -23,11 +23,19 @@ export default function DetailView() {
   const { isLoged, setIsOpen } = useContext(ProductsContext);
 
   useEffect(() => {
-    getProductById(+productId).then((res) => {
-      setData(res);
-      setIsLoading(!isLoading);
-    });
-  }, []);
+    const fetchData = async () => {
+      try {
+        const productData = await getProductById(productId);
+        setData(productData);
+      } catch (error) {
+        console.error("Error fetching product:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [productId, getProductById]);
 
   if (isLoading) return <Loading />;
 
@@ -47,17 +55,17 @@ export default function DetailView() {
             <img
               className="w-[381px] mr-[9px] h-[256px] border-[0.25px] border-slate-300 rounded-[5px]"
               alt="imagen del producto"
-              src={data?.type === "No comida" ? imgProd1 : imgApple}
+              src={data?.type === "NOT_FOOD" ? imgProd1 : imgApple}
             />
             <img
               className="w-[219px] mr-[9px] h-[256px] border-[0.25px] border-slate-300 rounded-[5px]"
               alt="imagen del producto"
-              src={data?.type === "No comida" ? imgProd2 : imgBanana}
+              src={data?.type === "NOT_FOOD" ? imgProd2 : imgBanana}
             />
             <img
               className="w-[227px] h-[256px] border-[0.25px] border-slate-300 rounded-[5px]"
               alt="imagen del producto"
-              src={data?.type === "No comida" ? imgProd3 : imgOrange}
+              src={data?.type === "NOT_FOOD" ? imgProd3 : imgOrange}
             />
           </div>
           <h3 className="font-bold mt-6 mb-2 text-[30px] leading-8">
@@ -96,16 +104,20 @@ export default function DetailView() {
             <label className="text-[20px] mr-5">
               Inicia la conversación con este usuario para acordar la entrega!
             </label>
-            
+
             <Boton
-              onClick={()=> isLoged? window.location.href='https://api.whatsapp.com/send?phone=543513513513' : setIsOpen(true)}
+              onClick={() =>
+                isLoged
+                  ? (window.location.href =
+                      "https://api.whatsapp.com/send?phone=543513513513")
+                  : setIsOpen(true)
+              }
               styles={
                 "bg-genoa bg text-white font-bold w-64 h-10 rounded-3xl my-4"
               }
             >
               Solicitar este producto
             </Boton>
-
           </div>
         </div>
       </div>
