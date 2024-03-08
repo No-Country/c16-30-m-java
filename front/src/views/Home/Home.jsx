@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import CardsContainer from "../../components/CardContainer/CardContainer";
 import Pagination from "../../components/Pagination/Pagination";
 import { Hero } from "../../layout";
@@ -7,13 +7,14 @@ import mapLogo from "../../assets/map.svg";
 import Switch from "../../components/Switch/Switch";
 import Filters from "../../components/Filters/Filters";
 import Spacer from "../../components/Spacer/Spacer";
-import initialProds from "../../products.json";
+/* import initialProds from "../../products.json";*/
 import { useFilters } from "../../hooks/useFilters";
+import { ProductsContext } from "../../contexts/ProductsContext";
 
 const Home = () => {
   const { filterProducts } = useFilters();
-  const filteredProducts = filterProducts(initialProds);
-
+  const { getProducts, data } = useContext(ProductsContext);
+  const filteredProducts = filterProducts(data);
   const [visibleProducts, setVisibleProducts] = useState(4);
 
   const loadMoreProducts = () => {
@@ -22,6 +23,10 @@ const Home = () => {
 
   const currentAppProducts = filteredProducts.slice(0, visibleProducts);
 
+  useEffect(() => {
+    getProducts();
+  }, []);
+  console.log(data);
   return (
     <main>
       <Hero />

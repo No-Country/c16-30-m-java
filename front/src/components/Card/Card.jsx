@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import favorite from "../../assets/favorite.svg";
 import pinLocation from "../../assets/pin-location.svg";
@@ -8,7 +8,8 @@ import imgApple from "../../assets/apple.webp";
 import UserLogoandCalification from "../UserLogoandCalification/UserLogoandCalification";
 
 const Card = (props) => {
-  const imgProd = props.type === "No comida" ? imgTable : imgApple;
+  const imgProd = props.type === "NOT_FOOD" ? imgTable : imgApple;
+
   return (
     <Link to={`/detailview/${props.id}`}>
       <div className="flex relative bg-concrete rounded-lg p-4 shadow-md mb-4 max-w-[824px] h-[200px]">
