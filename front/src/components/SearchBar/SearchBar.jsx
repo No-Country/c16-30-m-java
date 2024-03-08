@@ -1,6 +1,28 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { ProductsContext } from "../../contexts/ProductsContext";
+import { useFilters } from "../../hooks/useFilters";
 
 const SearchBar = () => {
+  const [name, setName] = useState("");
+  const { filters, setFilters } = useFilters();
+  // const { searchByName } = useContext(ProductsContext);
+
+  useEffect(() => {
+    if (!name) {
+      setFilters({ ...filters, name: name });
+    }
+    // eslint-disable-next-line
+  }, [name]);
+
+  const setNameHandler = (event) => {
+    setName(event.target.value);
+  };
+
+  const onSearch = () => {
+    setFilters({ ...filters, name: name });
+    // searchByName(name);
+  };
+
   const svgArrowBuscar = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -45,12 +67,20 @@ const SearchBar = () => {
 
   return (
     <div className="h-10 w-[770px] flex items-center border-[1px] border-dove-gray rounded-[4px]">
-      <div className="w-[50px] h-full flex justify-center items-center">{svgLupa}</div>
-      <input className="w-full h-full outline-none" type="search" placeholder="¿Qué estás buscando hoy?" autoComplete="off" />
-      <button>{svgArrowBuscar}</button>
+      <div className="w-[50px] h-full flex justify-center items-center">
+        {svgLupa}
+      </div>
+      <input
+        className="w-full h-full outline-none"
+        type="search"
+        placeholder="¿Qué estás buscando hoy?"
+        autoComplete="off"
+        onChange={setNameHandler}
+        value={name}
+      />
+      <button onClick={onSearch}>{svgArrowBuscar}</button>
     </div>
   );
 };
 
 export default SearchBar;
-// Modificacion

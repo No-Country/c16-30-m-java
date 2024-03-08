@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { ProductsContext } from "../../contexts/ProductsContext";
 import validator from "./validation";
 
 const PublicationForm = () => {
+  const { postProduct } = useContext(ProductsContext);
+
   const [form, setForm] = useState({
+    ownerId: 14,
+    userId: 22,
     name: "",
     description: "",
     type: "",
@@ -10,7 +15,6 @@ const PublicationForm = () => {
     product: "",
     quantity: 1,
     weight: "",
-    timeLimit: "",
   });
   const [errors, setErrors] = useState({});
 
@@ -28,14 +32,18 @@ const PublicationForm = () => {
     });
   };
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
     const validationErrors = validator(form);
     setErrors(validationErrors);
     if (Object.keys(validationErrors).length === 0) {
-      console.log("Formulario válido, enviar datos:", form);
+      console.log("Enviar formulario", form);
+      try {
+        await postProduct(form)();
+      } catch (error) {
+        console.error("Error al publicar el producto:", error);
+      }
     }
-    console.log("Enviar formulario", form);
   };
 
   return (
@@ -83,8 +91,8 @@ const PublicationForm = () => {
               required
             >
               <option value="">Seleccione uno</option>
-              <option value="food">Comida</option>
-              <option value="notFood">No Comida</option>
+              <option value="FOOD">Comida</option>
+              <option value="NOT_FOOD">No Comida</option>
             </select>
             {errors.type && <span className="text-red-500">{errors.type}</span>}
           </div>
@@ -147,23 +155,6 @@ const PublicationForm = () => {
             />
             {errors.weight && (
               <span className="text-red-500">{errors.weight}</span>
-            )}
-          </div>
-
-          <div className="flex flex-col mb-5">
-            <label className="mb-2 font-bold text-gray-700">
-              Límite de Tiempo:
-            </label>
-            <input
-              className="py-2 px-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
-              type="text"
-              name="timeLimit"
-              value={form.timeLimit}
-              onChange={changeHandler}
-              required
-            />
-            {errors.timeLimit && (
-              <span className="text-red-500">{errors.timeLimit}</span>
             )}
           </div>
 

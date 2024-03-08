@@ -35,12 +35,6 @@ const validator = (data) => {
     errors.weight = "El peso debe ser un número válido";
   }
 
-  if (!data.timeLimit.trim()) {
-    errors.timeLimit = "El límite de tiempo es requerido";
-  } else if (!/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/.test(data.timeLimit)) {
-    errors.timeLimit = "El límite de tiempo debe tener el formato HH:MM";
-  }
-
   return errors;
 };
 

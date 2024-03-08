@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { helpHttp } from "../../common/helpHttp";
+
+import { ProductsContext } from "../../contexts/ProductsContext";
 
 export default function Login({ useLogin, setUseLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const { isLoged, setIsLoged } = useContext(ProductsContext);
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -16,9 +20,8 @@ export default function Login({ useLogin, setUseLogin }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("asd")
     let options = {
-      body: {email: username,
+      body: {email: username.toLowerCase(),
       password}
   };
   
@@ -26,6 +29,7 @@ export default function Login({ useLogin, setUseLogin }) {
       if (!res.err) {
       //setReportData(res);
       console.log(res)
+      setIsLoged(true)
       } else {
       //setErrorMessage(res.errors);
       console.log(res.errors)
@@ -41,7 +45,7 @@ export default function Login({ useLogin, setUseLogin }) {
             <h1 className="text-3xl p-2 m-2 text-center font-bold">
               Bienvenid@!
             </h1>
-            {/* correo */}
+            {/* correo electronico */}
             <div className="relative my-7">
               <label
                 htmlFor="email"

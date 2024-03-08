@@ -38,7 +38,7 @@ const FilterTab = ({ title, isOpen, setIsOpen, type, options }) => {
         >
           {options.map((option, index) => (
             <li key={index} className="flex justify-between">
-              <label for="newest">{option.text}</label>
+              <label htmlFor="newest">{option.text}</label>
               <input
                 id="newest"
                 value={option.value}

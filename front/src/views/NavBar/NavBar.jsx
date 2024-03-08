@@ -1,16 +1,21 @@
 import React from "react";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import { NavLink } from "react-router-dom";
 
-import { useState } from "react";
+import { ProductsContext } from "../../contexts/ProductsContext";
+
+import { useState, useContext } from "react";
 import Modal from "../../components/Modal/Modal";
 
 import Logo from "../../components/Logo/Logo";
 import MenuNavBar from "../../components/MenuNavBar/MenuNavBar";
 import Boton from "../../components/Boton/Boton";
+import SideBar from "../../components/SideBar/SideBar";
 
 const NavBar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isLoged, setIsLoged] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const { isLoged, setIsOpen } = useContext(ProductsContext);
 
   return (
     <>
@@ -19,15 +24,27 @@ const NavBar = () => {
         <SearchBar />
 
         {isLoged ? (
-          <div className="flex justify-around">
-            <MenuNavBar />
-            <Boton
-              styles={
-                "bg-genoa text-white font-bold h-10 w-[183px] rounded-3xl"
-              }
-            >
-              Publicar
-            </Boton>
+          <div>
+            <div className="flex justify-around">
+              <MenuNavBar
+                isMenuOpen={isMenuOpen}
+                setIsMenuOpen={setIsMenuOpen}
+              />
+              <NavLink
+                to={isLoged ? "/publish" : "/"}
+                className="bg-primary text-white py-[8px] rounded-[100px] px-[50px] font-bold hover:brightness-110 transition-[filter] ease-in duration-200"
+              >
+                Publicar
+              </NavLink>
+            </div>
+            <div className="absolute">
+              {isMenuOpen && (
+                <SideBar
+                  isMenuOpen={isMenuOpen}
+                  setIsMenuOpen={setIsMenuOpen}
+                />
+              )}
+            </div>
           </div>
         ) : (
           <div>
@@ -35,11 +52,11 @@ const NavBar = () => {
               styles={
                 "bg-genoa bg text-white font-bold w-64 h-10 rounded-3xl my-4"
               }
-              onClick={() => setIsOpen(!isOpen)}
+              onClick={() => setIsOpen(true)}
             >
               Ingresar | Registrarse
             </Boton>
-            <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
+            <Modal />
           </div>
         )}
       </div>
